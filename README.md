@@ -210,26 +210,24 @@ kubectl --kubeconfig=./kubeconfig get nodes
 # k8s-worker-a   Ready    worker                    4d20h   v1.21.4+k3s1
 ```
 
-### :cloud:&nbsp; Cloudflare API Token
+### :cloud:&nbsp; Route53 IAM User
 
 :round_pushpin: You may skip this step, **however** make sure to `export` dummy data **on item 8** in the below list.
 
 ...Be aware you **will not** have a valid SSL cert until `cert-manager` is configured correctly
 
-In order to use `cert-manager` with the Cloudflare DNS challenge you will need to create a API token.
+In order to use `cert-manager` with the Route53 DNS challenge you will need to create an IAM User.
 
-1. Head over to Cloudflare and create a API token by going [here](https://dash.cloudflare.com/profile/api-tokens).
-2. Click the blue `Create Token` button
-3. Scroll down and create a Custom Token by choosing `Get started`
-4. Give your token a name like `cert-manager`
-5. Under `Permissions` give **read** access to `Zone` : `Zone` and **write** access to `Zone` : `DNS`
-6. Under `Zone Resources` set it to `Include` : `All Zones`
-7. Click `Continue to summary` and then `Create Token`
-8. Export this token and your Cloudflare email address to an environment variable on your system to be used in the following steps
+1. Make a new IAM user with [this policy attached](https://cert-manager.io/docs/configuration/acme/dns01/route53/#set-up-an-iam-role_)
+2. Export the below info
 
 ```sh
-export BOOTSTRAP_CLOUDFLARE_EMAIL="k8s-at-home@gmail.com"
-export BOOTSTRAP_CLOUDFLARE_TOKEN="kpG6iyg3FS_du_8KRShdFuwfbwu3zMltbvmJV6cD"
+export BOOTSTRAP_LETSENCRYPT_EMAIL=you@example.com
+export BOOTSTRAP_DOMAIN=your-awesome-domain.biz
+export BOOTSTRAP_ROUTE53_REGION=us-east-1
+export BOOTSTRAP_ROUTE53_ACCESS_KEY=AKIxxxxxxxxxxxx
+export BOOTSTRAP_ROUTE53_ZONE_ID=ZVxxxxxxxxxxxx
+export BOOTSTRAP_ROUTE53_SECRET_KEY=xxxxxxxxxx
 ```
 
 ### :small_blue_diamond:&nbsp; GitOps with Flux
