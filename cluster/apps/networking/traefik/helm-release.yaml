@@ -38,6 +38,10 @@ spec:
       access:
         enabled: true
         format: json
+    providers:
+      kubernetesCRD:
+        enabled: true
+        allowCrossNamespace: false
     ingressClass:
       enabled: true
       isDefaultClass: true
