@@ -23,8 +23,11 @@ spec:
     authHost: "auth.${SECRET_DOMAIN}"
     cookie:
       domain: "${SECRET_DOMAIN}"
+    default:
+      provider: google
     middleware:
       enabled: true
+      name: traefik-forward-auth
     providers:
       google:
         enabled: true
@@ -33,8 +36,8 @@ spec:
     restrictions:
       whitelist: "${SECRET_TFA_WHITELIST}"
     env:
-      TZ: America/Toronto
-    ingress:  
+      TZ: "America/Toronto"
+    ingress:
       main:
         enabled: true
         ingressClassName: "traefik"
