@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ceph-cluster.yaml
   - ceph-block-pool.yaml
+  - storage-class.yaml
