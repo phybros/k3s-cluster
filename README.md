@@ -223,7 +223,6 @@ In order to use `cert-manager` with the Route53 DNS challenge you will need to c
 
 ```sh
 export BOOTSTRAP_LETSENCRYPT_EMAIL=you@example.com
-export BOOTSTRAP_DOMAIN=your-awesome-domain.biz
 export BOOTSTRAP_ROUTE53_REGION=us-east-1
 export BOOTSTRAP_ROUTE53_ACCESS_KEY=AKIxxxxxxxxxxxx
 export BOOTSTRAP_ROUTE53_ZONE_ID=ZVxxxxxxxxxxxx
