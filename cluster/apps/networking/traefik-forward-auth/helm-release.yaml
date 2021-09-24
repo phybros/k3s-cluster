@@ -17,8 +17,8 @@ spec:
         namespace: flux-system
       interval: 5m
   dependsOn:
-    - name: traefik
-      namespace: networking
+  - name: traefik
+    namespace: networking
   values:
     authHost: "auth.${SECRET_DOMAIN}"
     cookie:
@@ -35,21 +35,3 @@ spec:
         clientSecret: "${SECRET_GOOGLE_CLIENT_SECRET}"
     restrictions:
       whitelist: "${SECRET_TFA_WHITELIST}"
-    env:
-      TZ: "America/Toronto"
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: "traefik"
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        hosts:
-          - host: "auth.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - "auth.${SECRET_DOMAIN}"
-            secretName: "traefik-forward-auth-tls"
