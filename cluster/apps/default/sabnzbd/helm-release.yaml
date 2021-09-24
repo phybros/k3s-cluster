@@ -19,6 +19,9 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/sabnzbd
       tag: v3.4.1
+    podSecurityContext:
+      supplementalGroups:
+        - 3000
     env:
       TZ: "America/New_York"
     ingress:
@@ -26,6 +29,7 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           traefik.ingress.kubernetes.io/router.tls: "true"
         hosts:
@@ -36,6 +40,7 @@ spec:
         tls:
           - hosts:
               - "sabnzbd.${SECRET_DOMAIN}"
+            secretName: "sabnzbd-tls"
     persistence:
       config:
         enabled: true
