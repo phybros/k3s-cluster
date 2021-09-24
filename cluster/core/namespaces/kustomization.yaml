@@ -5,4 +5,5 @@ resources:
   - metallb-system.yaml
   - networking.yaml
   - rook-ceph.yaml
+  - backup-system.yaml
   - home.yaml
