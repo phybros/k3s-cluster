@@ -7,3 +7,4 @@ resources:
   - rook-ceph.yaml
   - backup-system.yaml
   - home.yaml
+  - games.yaml
