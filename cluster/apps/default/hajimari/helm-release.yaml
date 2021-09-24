@@ -90,7 +90,7 @@ spec:
               url: "http://reddit.com"
         - name: Tech
           links:
-            - name: Hacker News
+            - name: Hacker News!!!!!!!!
               url: "https://news.ycombinator.com/"
             - name: The Verge
               url: "https://theverge.com/"
@@ -121,6 +121,7 @@ spec:
         existingClaim: hajimari-config
     podAnnotations:
       configmap.reloader.stakater.com/reload: "hajimari-settings"
+      backup.velero.io/backup-volumes: data
     resources:
       requests:
         cpu: 100m
