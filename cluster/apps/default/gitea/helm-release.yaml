@@ -49,6 +49,7 @@ spec:
         APP_NAME: "24Mc Code"
         DOMAIN: "code.${SECRET_DOMAIN}"
         server:
+          PROTOCOL: http
           ROOT_URL: "https://code.${SECRET_DOMAIN}"
         service:
           DISABLE_REGISTRATION: "true"
