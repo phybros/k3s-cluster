@@ -43,7 +43,7 @@ spec:
               - "sabnzbd.${SECRET_DOMAIN}"
             secretName: "sabnzbd-tls"
     podAnnotations:
-      backup.velero.io/backup-volumes: data
+      backup.velero.io/backup-volumes: config
       pre.hook.backup.velero.io/container: fsfreeze
       pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
       post.hook.backup.velero.io/container: fsfreeze
