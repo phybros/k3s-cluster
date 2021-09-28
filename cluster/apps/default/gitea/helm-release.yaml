@@ -59,7 +59,13 @@ spec:
         builtIn:
           postgresql:
             enabled: true
+
+      podAnnotations:
+        backup.velero.io/backup-volumes: data
     postgresql:
+      primary:
+        podAnnotations:
+          backup.velero.io/backup-volumes: data
       global:
         postgresql:
           postgresqlDatabase: gitea

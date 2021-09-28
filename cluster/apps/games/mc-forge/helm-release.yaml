@@ -24,6 +24,8 @@ spec:
       ops: "phybros"
       serviceType: LoadBalancer
       loadBalancerIP: 192.168.86.241
+    podAnnotations:
+      backup.velero.io/backup-volumes: datadir
     persistence:
       dataDir:
         enabled: true
