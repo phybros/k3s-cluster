@@ -69,7 +69,7 @@ spec:
       image:
         registry: docker.io
         repository: bitnami/postgresql
-        tag: 9.6.23-debian-10-r44
+        tag: 13.4.0-debian-10-r44
       persistence:
         enabled: true
         existingClaim: gitea-db-v1
