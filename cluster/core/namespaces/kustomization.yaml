@@ -4,7 +4,9 @@ resources:
   - cert-manager.yaml
   - metallb-system.yaml
   - networking.yaml
+  - monitoring.yaml
   - rook-ceph.yaml
   - backup-system.yaml
   - home.yaml
   - games.yaml
+  - media.yaml
