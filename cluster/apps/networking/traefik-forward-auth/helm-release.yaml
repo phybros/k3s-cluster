@@ -20,6 +20,9 @@ spec:
   - name: traefik
     namespace: networking
   values:
+    image:
+      repository: thomseddon/traefik-forward-auth
+      tag: 2.2.0
     authHost: "auth.${SECRET_DOMAIN}"
     cookie:
       domain: "${SECRET_DOMAIN}"
