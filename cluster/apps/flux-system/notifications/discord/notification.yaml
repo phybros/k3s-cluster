@@ -25,6 +25,8 @@ spec:
       name: "*"
     - kind: HelmRelease
       name: "*"
+    - kind: Kustomization
+      name: "*"
   exclusionList:
     - "error.*lookup github\\.com"
     - "waiting.*socket"
