@@ -26,8 +26,6 @@ _... managed with Flux and Renovate_ :robot:
 
 This is home to my personal Kubernetes cluster. [Flux](https://github.com/fluxcd/flux2) watches this Git repository and makes the changes to my cluster based on the manifests in the [cluster](./cluster/) directory. [Renovate](https://github.com/renovatebot/renovate) also watches this Git repository and creates pull requests when it finds updates to Docker images, Helm charts, and other dependencies.
 
-For more information, head on over to my [docs](https://onedr0p.github.io/home-cluster/).
-
 ## :handshake:&nbsp; Community
 
 Thanks to all the people who donate their time to the [Kubernetes @Home](https://github.com/k8s-at-home/) community.
