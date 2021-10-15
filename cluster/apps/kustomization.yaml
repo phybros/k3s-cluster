@@ -6,6 +6,7 @@ resources:
   - default
   - kube-system
   - networking
+  - monitoring
   - system-upgrade
   - home
   - games
