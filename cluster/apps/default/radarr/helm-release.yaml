@@ -68,7 +68,6 @@ spec:
       config:
         enabled: true
         existingClaim: radarr-config-v1
-        subPath: data
       media:
         enabled: true
         type: custom
