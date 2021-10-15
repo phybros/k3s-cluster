@@ -25,6 +25,21 @@ spec:
     podSecurityContext:
       supplementalGroups:
         - 3000
+    metrics:
+      enabled: true
+      serviceMonitor:
+        interval: 3m
+        scrapeTimeout: 1m
+      prometheusRule:
+        enabled: true
+      exporter:
+        image:
+          repository: ghcr.io/onedr0p/exportarr
+          tag: v0.6.1
+        env:
+          port: 9794
+          additionalMetrics: true
+          unknownQueueItems: false
     ingress:
       main:
         enabled: true
