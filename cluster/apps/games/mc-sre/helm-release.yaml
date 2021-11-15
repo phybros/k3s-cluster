@@ -1,0 +1,41 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mc-sre
+  namespace: games
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://itzg.github.io/minecraft-server-charts/
+      chart: minecraft
+      sourceRef:
+        kind: HelmRepository
+        name: minecraft-server-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 500m
+      limits:
+        memory: 4Gi
+        cpu: 2000m
+    minecraftServer:
+      eula: "TRUE"
+      type: "PAPER"
+      pvp: "false"
+      gameMode: survival
+      motd: "This is fine..."
+      ops: "phybros"
+      memory: 3072M
+      serviceType: LoadBalancer
+      loadBalancerIP: 192.168.86.242
+    podAnnotations:
+      backup.velero.io/backup-volumes: datadir
+    persistence:
+      dataDir:
+        enabled: true
+        existingClaim: mc-sre-v1
