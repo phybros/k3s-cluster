@@ -1,0 +1,59 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: samba
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: samba
+      version: 5.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    env:
+      # -- Set the container timezone
+      TZ: EST5EDT
+      SHARE1: Scans;/share1;yes;no;yes;;;Printer scans
+      PERMISSIONS: true
+
+    podSecurityContext:
+      supplementalGroups:
+        - 568
+
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: 192.168.86.222
+        ports:
+          tcp:
+            enabled: true
+            protocol: TCP
+            port: 445
+          netbios:
+            enabled: true
+            protocol: TCP
+            port: 139
+
+    persistence:
+      share1:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS_ADDR}"
+            path: "/mergerfs/storage/scans"
+
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
