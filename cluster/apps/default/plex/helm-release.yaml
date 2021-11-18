@@ -37,7 +37,7 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: 192.168.86.200
+            server: "${NAS_ADDR}"
             path: "/mergerfs/storage/media"
         mountPath: /media
         readOnly: true
