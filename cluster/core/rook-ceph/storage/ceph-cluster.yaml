@@ -37,7 +37,6 @@ spec:
         - operator: "Exists"
   monitoring:
     enabled: true
-  rulesNamespace: rook-ceph
   network:
   crashCollector:
     disable: false
