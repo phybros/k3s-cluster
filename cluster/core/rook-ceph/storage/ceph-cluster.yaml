@@ -36,8 +36,8 @@ spec:
       tolerations:
         - operator: "Exists"
   monitoring:
-    enabled: false
-  #  rulesNamespace: rook-ceph
+    enabled: true
+  rulesNamespace: rook-ceph
   network:
   crashCollector:
     disable: false
