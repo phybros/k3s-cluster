@@ -30,7 +30,7 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: "${SVC_PLEX_ADDR}"
+        loadBalancerIP: "${SVC_SAMBA_ADDR}"
         ports:
           tcp:
             enabled: true
