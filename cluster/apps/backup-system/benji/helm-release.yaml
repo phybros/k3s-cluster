@@ -27,7 +27,7 @@ spec:
       configuration:
         configurationVersion: "1"
         databaseEngine: postgresql://benji:secret@benji-postgresql-headless:5432/benji
-        defaultStorage: storage-1
+        defaultStorage: s3
         storages:
           - name: storage-1
             storageId: 1
