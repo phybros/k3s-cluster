@@ -158,6 +158,9 @@ spec:
                     mountPath: /benji-pg-backup
                   - name: ceph-data
                     mountPath: /etc/ceph
+                  - name: backup-s3-credentials
+                    mountPath: /etc/aws
+                    readOnly: true
               - op: add
                 path: /spec/template/metadata/annotations
                 value:
