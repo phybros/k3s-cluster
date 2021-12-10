@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://emberstack.github.io/helm-charts
-      chart: reloader
+      chart: reflector
       version: v6.0.42
       sourceRef:
         kind: HelmRepository
