@@ -36,7 +36,7 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: 192.168.86.212
+        loadBalancerIP: "${SVC_HOMEASSISTANT_ADDR}"
     additionalContainers:
       fsfreeze:
         name: fsfreeze
