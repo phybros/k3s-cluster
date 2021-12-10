@@ -34,6 +34,14 @@ spec:
             module: file
             configuration:
               path: /benji-pg-backup
+          - name: s3
+            storageId: 2
+            module: s3
+            configuration:
+              awsAccessKeyIdFile: /etc/aws/key
+              awsSecretAccessKeyFile: /etc/aws/secret
+              bucketName: k3s-cluster-backups
+              regionName: us-east-1
         ios:
           - module: rbdaio
             name: replicapool
@@ -90,6 +98,14 @@ spec:
       #     - benji-command
       #     - cleanup
       volumes:
+        - name: backup-s3-credentials
+          secret:
+            secretName: backup-s3-credentials
+            items:
+              - key: key
+                path: key
+              - key: secret
+                path: secret
         - name: benji-pg-backup
           persistentVolumeClaim:
             claimName: benji-pg-backup
@@ -109,6 +125,9 @@ spec:
           mountPath: /benji-pg-backup
         - name: ceph-data
           mountPath: /etc/ceph
+        - name: backup-s3-credentials
+          mountPath: /etc/aws
+          readOnly: true
     fsfreeze:
       enabled: true
     postgresql:
