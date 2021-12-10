@@ -20,7 +20,7 @@ spec:
       tag: "1.21"
     nameOverride: nginx
     podAnnotations:
-      secret.reloader.stakater.com/reload: "homepage-contents"
+      configmap.reloader.stakater.com/reload: "homepage-contents"
     persistence:
       homepage:
         enabled: true
