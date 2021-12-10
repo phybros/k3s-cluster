@@ -36,7 +36,7 @@ spec:
               path: /benji-pg-backup
         ios:
           - module: rbdaio
-            name: ceph-blockpool
+            name: replicapool
             configuration:
               simultaneousReads: 3
               simultaneousWrites: 3
