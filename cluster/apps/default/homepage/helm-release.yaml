@@ -1,0 +1,57 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: homepage
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: /charts/kah-common/
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: nginx
+      tag: "1.21"
+    nameOverride: nginx
+    podAnnotations:
+      secret.reloader.stakater.com/reload: "homepage-contents"
+    persistence:
+      homepage:
+        enabled: true
+        type: custom
+        volumeSpec:
+          configMap:
+            name: "homepage-contents"
+        subPath: homepage.html
+        mountPath: /usr/share/nginx/html/index.html
+    service:
+      main:
+        enabled: true
+        ports:
+          http:
+            enabled: true
+            port: 80
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.tls: "true"
+          traefik.ingress.kubernetes.io/router.middlewares: "networking-traefik-forward-auth@kubernetescrd"
+        hosts:
+          - host: "${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Exact
+        tls:
+          - hosts:
+              - "${SECRET_DOMAIN}"
+            secretName: "homepage-tls"
