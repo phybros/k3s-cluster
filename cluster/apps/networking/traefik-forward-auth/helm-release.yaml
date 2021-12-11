@@ -17,8 +17,8 @@ spec:
         namespace: flux-system
       interval: 5m
   dependsOn:
-  - name: traefik
-    namespace: networking
+    - name: traefik
+      namespace: networking
   values:
     image:
       repository: thomseddon/traefik-forward-auth
