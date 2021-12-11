@@ -49,6 +49,10 @@ spec:
         url: https://grafana.net
       auth.basic:
         disable_login_form: false
+      auth.anonymous:
+        enabled: true
+        org_id: 1
+        org_role: Viewer
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
