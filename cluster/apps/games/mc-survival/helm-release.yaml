@@ -32,7 +32,7 @@ spec:
       ops: "phybros"
       memory: 2048M
       serviceType: LoadBalancer
-      loadBalancerIP: 192.168.86.240
+      loadBalancerIP: "${SVC_MC_ADDR}"
     podAnnotations:
       backup.velero.io/backup-volumes: datadir
     persistence:
