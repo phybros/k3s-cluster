@@ -5,9 +5,6 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
-  # Main entrypoint for Traefik
-  SVC_TRAEFIK_ADDR: 192.168.86.210
-
   # Regular NAS for large files
   NAS_ADDR: 192.168.86.200
   # NAS for precious data
@@ -15,6 +12,11 @@ data:
 
   # MetalLB
   METALLB_LB_RANGE: 192.168.86.210-192.168.86.253
+  SVC_TRAEFIK_ADDR: 192.168.86.210
   SVC_PLEX_ADDR: 192.168.86.211
-  SVC_SAMBA_ADDR: 192.168.86.222
   SVC_HOMEASSISTANT_ADDR: 192.168.86.212
+  SVC_SAMBA_ADDR: 192.168.86.222
+  SVC_MC_ADDR: 192.168.86.240
+  SVC_MC_FORGE_ADDR: 192.168.86.241
+  SVC_MC_SRE_ADDR: 192.168.86.242
+  SVC_GITEA_SSH_ADDR: 192.168.86.244
