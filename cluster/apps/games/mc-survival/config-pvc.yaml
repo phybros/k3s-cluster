@@ -4,6 +4,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: mc-survival-v1
   namespace: games
+  annotations:
+    benji-backup.me/fsfreeze: "yes"
+  labels:
+    backup-this-pvc: "yes"
 spec:
   accessModes:
     - ReadWriteOnce

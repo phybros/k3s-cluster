@@ -6,6 +6,8 @@ metadata:
   namespace: default
   annotations:
     benji-backup.me/fsfreeze: "yes"
+  labels:
+    backup-this-pvc: "yes"
 spec:
   accessModes:
     - ReadWriteOnce

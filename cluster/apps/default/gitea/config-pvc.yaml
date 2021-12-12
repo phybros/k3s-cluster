@@ -4,6 +4,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: gitea-config-v1
   namespace: default
+  annotations:
+    benji-backup.me/fsfreeze: "yes"
+  labels:
+    backup-this-pvc: "yes"
 spec:
   accessModes:
     - ReadWriteOnce
@@ -18,6 +22,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: gitea-db-v1
   namespace: default
+  annotations:
+    benji-backup.me/fsfreeze: "yes"
+  labels:
+    backup-this-pvc: "yes"
 spec:
   accessModes:
     - ReadWriteOnce
