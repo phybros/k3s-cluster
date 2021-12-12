@@ -1,0 +1,72 @@
+---
+# Project information
+site_name: phybros | k3s cluster
+site_description: Kubernetes cluster. Powered by Flux/SOPS.
+site_author: phybros
+site_url: https://phybros.github.io/k3s-cluster/
+
+# Repository
+repo_name: phybros/k3s-cluster
+repo_url: https://github.com/phybros/k3s-cluster
+edit_uri: "edit/main/docs/"
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github-alt
+  language: en
+  features:
+    - navigation.sections
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+  palette:
+    - scheme: default
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+docs_dir: ./docs
+
+# Customization
+# extra_css:
+#   - _static/custom.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/phybros
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/k8s-at-home
+
+# Plugins
+plugins:
+  - search:
+      lang: en
+  - minify:
+      minify_html: true
+  # - macros:
+  #     include_dir: docs/_snippets
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+
+# Navigation structure
+nav:
+  - Introduction: index.md
