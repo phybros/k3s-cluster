@@ -61,30 +61,18 @@ spec:
         activeDeadlineSeconds: null
         startingDeadlineSeconds: null
       crontab:
-        - name: backup-games
+        - name: backup-all
           schedule: "30 07 * * *"
           command:
             - benji-backup-pvc
-            - --namespace
-            - games
-        - name: backup-home
-          schedule: "00 08 * * *"
-          command:
-            - benji-backup-pvc
-            - --namespace
-            - home
-        - name: backup-default
-          schedule: "30 08 * * *"
-          command:
-            - benji-backup-pvc
-            - --namespace
-            - default
+            - -l
+            - 'backup-this-pvc = yes'
         - name: enforce
           schedule: "00 06 * * *"
           command:
             - benji-command
             - enforce
-            - days14
+            - days7
             - 'labels["benji-backup.me/instance"] == "benji-k8s"'
         - name: cleanup
           schedule: "00 09 * * *"
@@ -204,71 +192,7 @@ spec:
           # Stolen from https://discord.com/channels/673534664354430999/675009698755379220/910288065229123665
           - target:
               kind: CronJob
-              name: benji-backup-games
-            patch:
-              - op: add
-                path: /spec/jobTemplate/spec/template/spec/initContainers
-                value:
-                  - name: generate-ceph-files
-                    image: rook/ceph:v1.7.9
-                    imagePullPolicy: Always
-                    command: ["/usr/bin/bash"]
-                    args: ["-c", "bash /script/generate-ceph.sh"]
-                    volumeMounts:
-                      - name: mon-endpoint-volume
-                        mountPath: /etc/rook
-                      - name: ceph-data
-                        mountPath: /etc/ceph
-                      - name: ceph-config
-                        mountPath: /script/generate-ceph.sh
-                        subPath: generate-ceph.sh
-                    env:
-                      - name: ROOK_CEPH_USERNAME
-                        valueFrom:
-                          secretKeyRef:
-                            name: rook-ceph-mon
-                            key: ceph-username
-                      - name: ROOK_CEPH_SECRET
-                        valueFrom:
-                          secretKeyRef:
-                            name: rook-ceph-mon
-                            key: ceph-secret
-
-          - target:
-              kind: CronJob
-              name: benji-backup-home
-            patch:
-              - op: add
-                path: /spec/jobTemplate/spec/template/spec/initContainers
-                value:
-                  - name: generate-ceph-files
-                    image: rook/ceph:v1.7.9
-                    imagePullPolicy: Always
-                    command: ["/usr/bin/bash"]
-                    args: ["-c", "bash /script/generate-ceph.sh"]
-                    volumeMounts:
-                      - name: mon-endpoint-volume
-                        mountPath: /etc/rook
-                      - name: ceph-data
-                        mountPath: /etc/ceph
-                      - name: ceph-config
-                        mountPath: /script/generate-ceph.sh
-                        subPath: generate-ceph.sh
-                    env:
-                      - name: ROOK_CEPH_USERNAME
-                        valueFrom:
-                          secretKeyRef:
-                            name: rook-ceph-mon
-                            key: ceph-username
-                      - name: ROOK_CEPH_SECRET
-                        valueFrom:
-                          secretKeyRef:
-                            name: rook-ceph-mon
-                            key: ceph-secret
-
-          - target:
-              kind: CronJob
-              name: benji-backup-default
+              name: benji-backup-all
             patch:
               - op: add
                 path: /spec/jobTemplate/spec/template/spec/initContainers
