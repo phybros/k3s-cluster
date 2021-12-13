@@ -59,5 +59,10 @@ markdown_extensions:
 # Navigation structure
 nav:
   - Introduction: index.md
-  # - Storage:
-  #   - Backups: storage/backups.md
+  - Networking:
+    - Traefik: networking/traefik.md
+    - MetalLB: networking/metallb.md
+  - Storage:
+    - Rook Ceph: storage/rook-ceph.md
+    - Backups: storage/backups.md
+    - Restores: storage/restores.md
