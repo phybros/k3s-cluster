@@ -55,14 +55,10 @@ spec:
           DISABLE_REGISTRATION: "true"
         security:
           SECRET_KEY: "${SECRET_GITEA_SECRET}"
-      database:
-        builtIn:
-          postgresql:
-            enabled: true
-
       podAnnotations:
         backup.velero.io/backup-volumes: data
     postgresql:
+      enabled: true
       primary:
         podAnnotations:
           backup.velero.io/backup-volumes: data
