@@ -42,9 +42,12 @@ spec:
             port: 8123
           homekitudp:
             port: 5353
+            targetPort: 5353
             protocol: UDP
           homekittcp:
             port: 21063
+            targetPort: 21063
+            protocol: TCP
     additionalContainers:
       fsfreeze:
         name: fsfreeze
