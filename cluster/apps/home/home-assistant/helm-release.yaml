@@ -39,6 +39,7 @@ spec:
             port: 21063
             targetPort: 21063
       otherudp:
+        nameOverride: home-assistant-udp
         type: LoadBalancer
         loadBalancerIP: "${SVC_HOMEASSISTANT_UDP_ADDR}"
         ports:
