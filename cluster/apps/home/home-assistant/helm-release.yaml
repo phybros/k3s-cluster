@@ -30,6 +30,8 @@ spec:
     service:
       main:
         type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: home-assistant-sharedip
         loadBalancerIP: "${SVC_HOMEASSISTANT_ADDR}"
         ports:
           http:
@@ -42,8 +44,10 @@ spec:
         enabled: true
         primary: false
         name: home-assistant-udp
+        annotations:
+          metallb.universe.tf/allow-shared-ip: home-assistant-sharedip
         type: LoadBalancer
-        loadBalancerIP: "${SVC_HOMEASSISTANT_UDP_ADDR}"
+        loadBalancerIP: "${SVC_HOMEASSISTANT_ADDR}"
         ports:
           homekitudp:
             enabled: true
