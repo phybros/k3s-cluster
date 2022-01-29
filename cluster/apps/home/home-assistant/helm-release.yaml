@@ -37,15 +37,14 @@ spec:
       main:
         type: LoadBalancer
         loadBalancerIP: "${SVC_HOMEASSISTANT_ADDR}"
-      homekitudp:
-        type: LoadBalancer
-        port: 5353
-        loadBalancerIP: "${SVC_HOMEASSISTANT_ADDR}"
-      homekittcp:
-        type: LoadBalancer
-        protocol: UDP
-        port: 21063
-        loadBalancerIP: "${SVC_HOMEASSISTANT_ADDR}"
+        ports:
+          http:
+            port: 8123
+          homekitudp:
+            port: 5353
+            protocol: UDP
+          homekittcp:
+            port: 21063
     additionalContainers:
       fsfreeze:
         name: fsfreeze
