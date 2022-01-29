@@ -34,13 +34,18 @@ spec:
         ports:
           http:
             port: 8123
-          homekitudp:
-            enabled: true
-            port: 5353
-            targetPort: 5353
-            protocol: UDP
           homekittcp:
             enabled: true
             port: 21063
             targetPort: 21063
-            protocol: TCP
+      otherudp:
+        type: LoadBalancer
+        loadBalancerIP: "${SVC_HOMEASSISTANT_UDP_ADDR}"
+        ports:
+          homekitudp:
+            port: 5353
+            targetPort: 5353
+            protocol: UDP
+
+
+
