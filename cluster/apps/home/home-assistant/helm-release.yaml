@@ -41,7 +41,7 @@ spec:
       otherudp:
         enabled: true
         primary: false
-        nameOverride: home-assistant-udp
+        name: home-assistant-udp
         type: LoadBalancer
         loadBalancerIP: "${SVC_HOMEASSISTANT_UDP_ADDR}"
         ports:
