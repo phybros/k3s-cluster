@@ -46,9 +46,7 @@ spec:
         loadBalancerIP: "${SVC_HOMEASSISTANT_UDP_ADDR}"
         ports:
           homekitudp:
+            enabled: true
             port: 5353
             targetPort: 5353
             protocol: UDP
-
-
-
