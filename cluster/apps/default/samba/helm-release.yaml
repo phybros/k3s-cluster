@@ -26,14 +26,6 @@ spec:
         enabled: true
         data:
           config.yml: |
-            auth:
-              - user: scansuser
-                group: scansgroup
-                uid: 100
-                gid: 101
-            global:
-              - "force user = scansuser"
-              - "force group = scansgroup"
             share:
               - name: Scans
                 path: /share1
