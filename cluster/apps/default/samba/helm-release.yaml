@@ -26,6 +26,9 @@ spec:
         enabled: true
         data:
           config.yml: |
+            global:
+              - "force user = 100"
+              - "force group = 101"
             share:
               - name: Scans
                 path: /share1
@@ -34,8 +37,6 @@ spec:
                 guestok: yes
                 comment: "Printer scans"
                 veto: no
-                force user: 100
-                force group: 101
 
     podSecurityContext:
       supplementalGroups:
