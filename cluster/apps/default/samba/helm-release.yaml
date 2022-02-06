@@ -20,8 +20,6 @@ spec:
     env:
       # -- Set the container timezone
       TZ: EST5EDT
-      SHARE1: Scans;/share1;yes;no;yes;;;Printer scans
-      PERMISSIONS: true
 
     configmap:
       config:
@@ -35,6 +33,9 @@ spec:
                 readonly: no
                 guestok: yes
                 comment: "Printer scans"
+                veto: no
+                force user: 100
+                force group: 101
 
     podSecurityContext:
       supplementalGroups:
