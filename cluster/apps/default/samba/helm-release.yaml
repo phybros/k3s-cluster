@@ -23,6 +23,19 @@ spec:
       SHARE1: Scans;/share1;yes;no;yes;;;Printer scans
       PERMISSIONS: true
 
+    configmap:
+      config:
+        enabled: true
+        data:
+          config.yml: |
+            share:
+              - name: Scans
+                path: /share1
+                browsable: yes
+                readonly: no
+                guestok: yes
+                comment: "Printer scans"
+
     podSecurityContext:
       supplementalGroups:
         - 568
