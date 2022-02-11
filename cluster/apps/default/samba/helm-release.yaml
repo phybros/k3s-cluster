@@ -29,6 +29,8 @@ spec:
             global:
               - "create mask = 0644"
               - "directory mask = 0755"
+              - "security = user"
+              - "map to guest = Bad Password"
             share:
               - name: Scans
                 path: /share1
