@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: traefik-forward-auth
-      version: 1.0.10
+      version: 2.0.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -23,19 +23,14 @@ spec:
     image:
       repository: thomseddon/traefik-forward-auth
       tag: 2.2.0
-    authHost: "auth.${SECRET_DOMAIN}"
-    lifetime: "604800"
-    cookie:
-      domain: "${SECRET_DOMAIN}"
-    default:
-      provider: google
+    env:
+      AUTH_HOST: "auth.${SECRET_DOMAIN}"
+      LIFETIME: "604800"
+      COOKIE_DOMAIN: "${SECRET_DOMAIN}"
+      DEFAULT_PROVIDER: "google"
+      PROVIDERS_GOOGLE_CLIENT_ID: "${SECRET_GOOGLE_CLIENT_ID}"
+      PROVIDERS_GOOGLE_CLIENT_SECRET: "${SECRET_GOOGLE_CLIENT_SECRET}"
+      WHITELIST: "${SECRET_TFA_WHITELIST}"
     middleware:
       enabled: true
-      name: traefik-forward-auth
-    providers:
-      google:
-        enabled: true
-        clientId: "${SECRET_GOOGLE_CLIENT_ID}"
-        clientSecret: "${SECRET_GOOGLE_CLIENT_SECRET}"
-    restrictions:
-      whitelist: "${SECRET_TFA_WHITELIST}"
+      nameOverride: traefik-forward-auth
