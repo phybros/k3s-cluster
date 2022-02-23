@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: samba
-      version: 5.2.0
+      version: 6.0.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -18,10 +18,31 @@ spec:
       interval: 5m
   values:
     env:
-      # -- Set the container timezone
       TZ: EST5EDT
-      SHARE1: Scans;/share1;yes;no;yes;;;Printer scans
-      PERMISSIONS: true
+    configmap:
+      config:
+        enabled: true
+        data:
+          config.yml: |
+            auth:
+              - user: scans
+                group: scans
+                uid: 568
+                gid: 568
+                password: scans
+            global:
+              - "force user = scans"
+              - "force group = scans"
+              - "create mask = 0644"
+              - "directory mask = 0755"
+            share:
+              - name: Scans
+                path: /share1
+                browsable: yes
+                readonly: no
+                guestok: no
+                comment: "Printer scans"
+                veto: no
 
     podSecurityContext:
       supplementalGroups:
