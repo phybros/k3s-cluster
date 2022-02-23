@@ -42,7 +42,7 @@ spec:
                 readonly: no
                 guestok: no
                 comment: "Printer scans"
-                veto: no
+                veto: yes
 
     podSecurityContext:
       supplementalGroups:
