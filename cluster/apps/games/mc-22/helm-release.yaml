@@ -30,6 +30,7 @@ spec:
       gameMode: survival
       levelSeed: "-1947113420"
       version: "1.18.2"
+      spawnProtection: 0
       motd: "\u00a76\u00a7lBasement\u00a7c\u00a7l Dwellers\u00a7e\u00a7l United\u00a7d (\u00a7abirds\u00a7d are \u00a79pog\u00a7d)"
       ops: "phybros"
       memory: 3072M
