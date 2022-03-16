@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: mc-forge
+  name: mc-22
   namespace: games
 spec:
   interval: 5m
@@ -16,18 +16,25 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    replicaCount: 0
-    imageTag: java8
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 500m
+      limits:
+        memory: 4Gi
+        cpu: 2000m
     minecraftServer:
       eula: "TRUE"
-      type: "FORGE"
-      version: "1.16.5"
+      type: "PAPER"
+      pvp: "true"
+      gameMode: survival
+      version: "1.18.2"
+      motd: "\u00a76\u00a7lBasement\u00a7c\u00a7l Dwellers\u00a7e\u00a7l United\u00a7d (\u00a7abirds\u00a7d are \u00a79pog\u00a7d)"
       ops: "phybros"
+      memory: 3072M
       serviceType: LoadBalancer
-      loadBalancerIP: "${SVC_MC_FORGE_ADDR}"
-    podAnnotations:
-      backup.velero.io/backup-volumes: datadir
+      loadBalancerIP: "${SVC_MC_22_ADDR}"
     persistence:
       dataDir:
         enabled: true
-        existingClaim: mc-forge-v1
+        existingClaim: mc-22-v1
