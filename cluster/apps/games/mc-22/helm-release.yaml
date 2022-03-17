@@ -26,10 +26,12 @@ spec:
     minecraftServer:
       eula: "TRUE"
       type: "PAPER"
+      version: "1.18.2"
       pvp: "true"
       gameMode: survival
       levelSeed: "-1947113420"
-      version: "1.18.2"
+      overrideServerProperties: true
+      whitelist: "phybros,gimgam5000"
       viewDistance: 20
       spawnProtection: "0"
       difficulty: "hard"
