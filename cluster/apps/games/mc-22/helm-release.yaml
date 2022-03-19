@@ -21,7 +21,7 @@ spec:
         memory: 512Mi
         cpu: 500m
       limits:
-        memory: 4Gi
+        memory: 5Gi
         cpu: 2000m
     minecraftServer:
       eula: "TRUE"
@@ -37,7 +37,7 @@ spec:
       difficulty: "hard"
       motd: "\u00a76\u00a7lBasement\u00a7c\u00a7l Dwellers\u00a7e\u00a7l United\u00a7d (\u00a7abirds\u00a7d are \u00a79pog\u00a7d)"
       ops: "phybros"
-      memory: 3072M
+      memory: 4096M
       serviceType: LoadBalancer
       loadBalancerIP: "${SVC_MC_22_ADDR}"
       extraPorts:
