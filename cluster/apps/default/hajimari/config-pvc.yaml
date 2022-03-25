@@ -14,4 +14,4 @@ spec:
   storageClassName: rook-ceph-block
   resources:
     requests:
-      storage: 64Mi
+      storage: 128Mi
