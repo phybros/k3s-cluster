@@ -32,7 +32,7 @@ spec:
       levelSeed: "-1947113420"
       overrideServerProperties: true
       whitelist: "phybros,gimgam5000"
-      viewDistance: 20
+      viewDistance: 10
       spawnProtection: "0"
       difficulty: "hard"
       motd: "\u00a76\u00a7lBasement\u00a7c\u00a7l Dwellers\u00a7e\u00a7l United\u00a7d (\u00a7abirds\u00a7d are \u00a79pog\u00a7d)"
