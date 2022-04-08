@@ -14,7 +14,7 @@ spec:
   storageClassName: rook-ceph-block
   resources:
     requests:
-      storage: 2Gi
+      storage: 4Gi
 
 ---
 apiVersion: v1
@@ -32,4 +32,4 @@ spec:
   storageClassName: rook-ceph-block
   resources:
     requests:
-      storage: 500Mi
+      storage: 1Gi
