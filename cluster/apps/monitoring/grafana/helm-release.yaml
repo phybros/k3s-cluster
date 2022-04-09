@@ -77,6 +77,17 @@ spec:
             type: prometheus
             access: proxy
             url: http://prometheus-prometheus:9090/
+          - name: TeslaMate
+            type: postgres
+            access: proxy
+            url: teslamate-postgresql.home
+            database: teslamate
+            user: teslamate
+            secureJsonData:
+              password: teslamate
+            jsonData:
+              postgresVersion: 1000
+              sslmode: disable
         #     isDefault: true
         #   - name: Loki
         #     type: loki
@@ -126,6 +137,7 @@ spec:
     plugins:
       - natel-discrete-panel
       - pr0ps-trackmap-panel
+      - panodata-map-panel
       - grafana-piechart-panel
       - vonage-status-panel
       - grafana-worldmap-panel
