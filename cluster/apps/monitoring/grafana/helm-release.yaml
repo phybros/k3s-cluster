@@ -137,7 +137,6 @@ spec:
     plugins:
       - natel-discrete-panel
       - pr0ps-trackmap-panel
-      - panodata-map-panel
       - grafana-piechart-panel
       - vonage-status-panel
       - grafana-worldmap-panel
