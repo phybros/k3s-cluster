@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: hajimari-config-v1
-  namespace: default
+  namespace: media
   annotations:
     benji-backup.me/fsfreeze: "yes"
   labels:
