@@ -26,7 +26,7 @@ spec:
         pullPolicy: IfNotPresent
       configuration:
         configurationVersion: "1"
-        databaseEngine: postgresql://benji:secret@benji-postgresql-headless:5432/benji
+        databaseEngine: postgresql://benji:secret@benji-postgresql-hl:5432/benji
         defaultStorage: s3
         storages:
           - name: storage-1
