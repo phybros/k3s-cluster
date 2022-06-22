@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: nginx
-      tag: "1.22"
+      tag: "1.23"
     nameOverride: nginx
     podAnnotations:
       configmap.reloader.stakater.com/reload: "homepage-contents"
