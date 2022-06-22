@@ -114,9 +114,11 @@ spec:
       enabled: true
     postgresql:
       enabled: true
-      postgresqlUsername: benji
-      postgresqlDatabase: benji
-      postgresqlPassword: secret
+      auth:
+        enablePostgresUser: false
+        username: benji
+        database: benji
+        password: secret
     pushgateway:
       image:
         registry: docker.io
