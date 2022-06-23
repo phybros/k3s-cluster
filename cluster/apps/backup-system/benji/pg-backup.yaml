@@ -49,12 +49,12 @@ spec:
         spec:
           containers:
             - name: postgres-backup
-              image: postgres:12
+              image: postgres:14
               command: ["/bin/sh"]
               args:
                 [
                   "-c",
-                  'pg_dump -U benji -h benji-postgresql-headless benji > /var/backups/pgsql/backup-$(date +"%m-%d-%Y-%H-%M").sql',
+                  'pg_dump -U benji -h benji-postgresql-hl benji > /var/backups/pgsql/backup-$(date +"%m-%d-%Y-%H-%M").sql',
                 ]
               env:
                 - name: PGPASSWORD
