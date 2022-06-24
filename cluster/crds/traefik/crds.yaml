@@ -22,6 +22,7 @@ metadata:
   name: traefik-crds
   namespace: flux-system
 spec:
+  timeout: 5m0s
   interval: 15m
   prune: false
   sourceRef:
