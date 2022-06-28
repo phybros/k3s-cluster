@@ -180,15 +180,15 @@ spec:
                           secretKeyRef:
                             name: rook-ceph-mon
                             key: ceph-secret
-          - target:
-              kind: DaemonSet
-              name: benji-fsfreeze
-            patch:
-              - op: replace
-                path: /spec/template/spec/containers/0/volumeMounts
-                value:
-                  - name: rbd-mounts
-                    mountPath: /var/lib/kubelet/plugins/kubernetes.io/rbd/mounts/
+          # - target:
+          #     kind: DaemonSet
+          #     name: benji-fsfreeze
+          #   patch:
+          #     - op: replace
+          #       path: /spec/template/spec/containers/0/volumeMounts
+          #       value:
+          #         - name: rbd-mounts
+          #           mountPath: /var/lib/kubelet/plugins/kubernetes.io/rbd/mounts/
 
           # TODO: maybe there's a less gross way to do this. For now, patch every cronjob with the ceph secrets
           # Stolen from https://discord.com/channels/673534664354430999/675009698755379220/910288065229123665
