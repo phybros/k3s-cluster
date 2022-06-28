@@ -126,16 +126,40 @@ spec:
       endpoints:
         - 192.168.86.200
         - 192.168.86.201
+      service:
+        enabled: true
+        port: 10257
+        targetPort: 10257
+      serviceMonitor:
+        enabled: true
+        https: true
+        insecureSkipVerify: true
     kubeScheduler:
       enabled: true
       endpoints:
         - 192.168.86.200
         - 192.168.86.201
+      service:
+        enabled: true
+        port: 10259
+        targetPort: 10259
+      serviceMonitor:
+        enabled: true
+        https: true
+        insecureSkipVerify: true
     kubeProxy:
       enabled: true
       endpoints:
         - 192.168.86.200
         - 192.168.86.201
+      service:
+        enabled: true
+        port: 10249
+        targetPort: 10249
+      serviceMonitor:
+        enabled: true
+        https: true
+        insecureSkipVerify: true
     # kubeEtcd:
     #   enabled: true
     #   endpoints:
