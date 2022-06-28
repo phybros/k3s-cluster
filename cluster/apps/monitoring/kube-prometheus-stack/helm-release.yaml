@@ -132,7 +132,8 @@ spec:
         targetPort: 10257
       serviceMonitor:
         enabled: true
-        https: false
+        https: true
+        insecureSkipVerify: true
     kubeScheduler:
       enabled: true
       endpoints:
@@ -144,7 +145,8 @@ spec:
         targetPort: 10259
       serviceMonitor:
         enabled: true
-        https: false
+        https: true
+        insecureSkipVerify: true
     kubeProxy:
       enabled: true
       endpoints:
@@ -156,7 +158,8 @@ spec:
         targetPort: 10249
       serviceMonitor:
         enabled: true
-        https: false
+        https: true
+        insecureSkipVerify: true
     # Setting this option to 0 disabled CPU limits
     prometheusOperator:
       configReloaderCpu: 0
