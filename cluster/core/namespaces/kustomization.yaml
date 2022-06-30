@@ -10,3 +10,4 @@ resources:
   - home.yaml
   - games.yaml
   - media.yaml
+  - data.yaml
