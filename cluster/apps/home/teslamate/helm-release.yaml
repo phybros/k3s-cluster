@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: teslamate
-      version: 6.7.2
+      version: 7.0.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -22,7 +22,7 @@ spec:
       tag: 1.26.1
     env:
       TZ: "America/New_York"
-      DATABASE_HOST: teslamate-postgresql
+      DATABASE_HOST: teslamate-postgresql-hl
       DATABASE_NAME: teslamate
       DATABASE_USER: teslamate
       DATABASE_PASS: teslamate
@@ -36,12 +36,13 @@ spec:
       image:
         repository: postgres
         tag: '14'
-      postgresqlUsername: teslamate
-      postgresqlDatabase: teslamate
-      postgresqlPassword: teslamate
-      persistence:
-        enabled: true
-        existingClaim: teslamate-db-v1
+      auth:
+        postgresPassword: teslamate
+        database: teslamate
+      primary:
+        persistence:
+          enabled: true
+          existingClaim: teslamate-db-v1
     ingress:
       main:
         enabled: true
