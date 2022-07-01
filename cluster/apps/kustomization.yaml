@@ -1,13 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - flux-system
   - backup-system
+  - data
   - default
-  - kube-system
-  - networking
-  - monitoring
-  - system-upgrade
-  - home
+  - flux-system
   - games
+  - home
+  - kube-system
   - media
+  - monitoring
+  - networking
+  - system-upgrade
