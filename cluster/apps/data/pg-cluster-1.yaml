@@ -1,3 +1,14 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pg-cluster-1-secrets
+  namespace: kubegres-system
+type: Opaque
+stringData:
+  superUserPassword: postgresSuperUserPsw
+  replicationUserPassword: postgresReplicaPsw
+
+---
 apiVersion: kubegres.reactive-tech.io/v1
 kind: Kubegres
 metadata:
@@ -11,6 +22,13 @@ spec:
       storageClassName: rook-ceph-block
    env:
       - name: POSTGRES_PASSWORD
-        value: ${SECRET_KUBEGRES_PASSWORD}
+        valueFrom:
+           secretKeyRef:
+              name: pg-cluster-1-secrets
+              key: superUserPassword
+
       - name: POSTGRES_REPLICATION_PASSWORD
-        value: ${SECRET_KUBEGRES_PASSWORD}
+        valueFrom:
+           secretKeyRef:
+              name: pg-cluster-1-secrets
+              key: replicationUserPassword
