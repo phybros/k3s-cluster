@@ -41,6 +41,17 @@ spec:
       serviceType: LoadBalancer
       loadBalancerIP: "${SVC_MC_22_ADDR}"
       extraPorts:
+        - name: servertap
+          containerPort: 4567
+          protocol: TCP
+          service:
+            enabled: true
+            embedded: false
+            port: 4567
+            type: LoadBalancer
+            loadBalancerIP: "${SVC_MC_22_ST_ADDR}"
+          ingress:
+            enabled: false
         - name: map
           containerPort: 8123
           protocol: TCP
