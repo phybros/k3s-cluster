@@ -8,7 +8,6 @@ resources:
   - games
   - home
   - kube-system
-  - media
   - monitoring
   - networking
   - system-upgrade
