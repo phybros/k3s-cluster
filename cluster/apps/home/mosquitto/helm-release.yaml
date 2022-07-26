@@ -24,8 +24,8 @@ spec:
       TZ: "America/New_York"
     auth:
       enabled: true
-    # podAnnotations:
-    #   secret.reloader.stakater.com/reload: mosquitto
+    podAnnotations:
+      secret.reloader.stakater.com/reload: mosquitto
     service:
       main:
         type: LoadBalancer
@@ -35,9 +35,9 @@ spec:
       config:
         enabled: true
         existingClaim: mosquitto-config-v1
-      # configinc:
-      #   enabled: true
-      #   type: custom
-      #   volumeSpec:
-      #     secret:
-      #       secretName: mosquitto
+      configinc:
+        enabled: true
+        type: custom
+        volumeSpec:
+          secret:
+            secretName: mosquitto
