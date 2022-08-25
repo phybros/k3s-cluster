@@ -22,6 +22,7 @@ spec:
       tag: v1.28.1.6104-788f82488
     env:
       TZ: "America/New_York"
+      PLEX_CLAIM: "${SECRET_PLEX_CLAIM}"
     service:
       main:
         type: LoadBalancer
