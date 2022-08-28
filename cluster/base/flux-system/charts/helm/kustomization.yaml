@@ -25,3 +25,4 @@ resources:
   - weaveworks-kured-charts.yaml
   - vmware-tanzu-charts.yaml
   - gitea-charts.yaml
+  - bjw-s-helm-charts.yaml
