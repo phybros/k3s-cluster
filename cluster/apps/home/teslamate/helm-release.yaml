@@ -26,8 +26,10 @@ spec:
       DATABASE_NAME: teslamate
       DATABASE_USER: teslamate
       DATABASE_PASS: teslamate
-      DISABLE_MQTT: "true"
       ENCRYPTION_KEY: "${SECRET_TESLAMATE_ENCRYPTION_KEY}"
+      MQTT_HOST: "${SVC_MQTT_ADDR}"
+      MQTT_USERNAME: teslamate
+      MQTT_PASSWORD: "${SECRET_TESLAMATE_MQTT_PASSWORD}"
     persistence:
       config:
         enabled: true
