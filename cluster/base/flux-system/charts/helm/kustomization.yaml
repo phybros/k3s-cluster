@@ -26,3 +26,4 @@ resources:
   - vmware-tanzu-charts.yaml
   - gitea-charts.yaml
   - bjw-s-helm-charts.yaml
+  - phybros-charts.yaml
