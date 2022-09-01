@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://phybros.github.io/helm-charts
       chart: seafile
-      version: 3.1.2
+      version: 4.0.0
       sourceRef:
         kind: HelmRepository
         name: phybros-charts
