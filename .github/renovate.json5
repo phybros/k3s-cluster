@@ -55,6 +55,16 @@
       ],
       "datasourceTemplate": "helm"
     },
+    // regexManager to read and process Metallb CRD's
+    {
+      "fileMatch": [
+        "cluster/crds/metallb/.+\\.yaml$"
+      ],
+      "matchStrings": [
+        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n"
+      ],
+      "datasourceTemplate": "helm"
+    }
   ],
   "packageRules": [
     // setup datasources
