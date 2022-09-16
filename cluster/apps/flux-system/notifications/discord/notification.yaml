@@ -30,3 +30,4 @@ spec:
   exclusionList:
     - "error.*lookup github\\.com"
     - "waiting.*socket"
+    - "kustomization/crds-metallb.flux-system"
