@@ -35,7 +35,7 @@ spec:
       viewDistance: 10
       spawnProtection: "0"
       difficulty: "hard"
-      motd: "\u00a7acreative potatoes\u00a7d are \u00a79op\u00a7d)"
+      motd: "\u00a7agolden carrots\u00a7d are \u00a79op\u00a7d"
       ops: "phybros,gimgam5000"
       memory: 4096M
       serviceType: LoadBalancer
