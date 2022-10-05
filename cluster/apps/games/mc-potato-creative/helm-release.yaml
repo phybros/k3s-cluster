@@ -27,6 +27,7 @@ spec:
       eula: "TRUE"
       type: "PAPER"
       version: "1.19.2"
+      vanillaTweaksShareCodes: ["V4YEgn"]
       pvp: "true"
       gameMode: creative
       levelSeed: "iamacamel"

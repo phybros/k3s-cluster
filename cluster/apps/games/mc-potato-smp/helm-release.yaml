@@ -29,6 +29,7 @@ spec:
       version: "1.19.2"
       pvp: "true"
       gameMode: survival
+      vanillaTweaksShareCodes: ["V4YEgn"]
       levelSeed: "iamacamel"
       overrideServerProperties: true
       whitelist: "phybros,gimgam5000"
