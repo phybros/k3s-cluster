@@ -18,10 +18,10 @@ spec:
   values:
     resources:
       requests:
-        memory: 512Mi
-        cpu: 500m
+        memory: 4Gi
+        cpu: 2000m
       limits:
-        memory: 5Gi
+        memory: 4Gi
         cpu: 2000m
     minecraftServer:
       eula: "TRUE"
@@ -38,7 +38,7 @@ spec:
       difficulty: "hard"
       motd: "\u00a7agolden carrots\u00a7d are \u00a79op\u00a7d"
       ops: "phybros,gimgam5000"
-      memory: 4096M
+      memory: 3072M
       serviceType: LoadBalancer
       loadBalancerIP: "${SVC_MC_POTATO_CREATIVE_ADDR}"
     persistence:

@@ -18,10 +18,10 @@ spec:
   values:
     resources:
       requests:
-        memory: 512Mi
-        cpu: 500m
+        memory: 6Gi
+        cpu: 2000m
       limits:
-        memory: 5Gi
+        memory: 6Gi
         cpu: 2000m
     minecraftServer:
       eula: "TRUE"
