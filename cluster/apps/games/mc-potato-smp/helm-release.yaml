@@ -18,8 +18,8 @@ spec:
   values:
     resources:
       requests:
-        memory: 6Gi
-        cpu: 2000m
+        memory: 2Gi
+        cpu: 1000m
       limits:
         memory: 6Gi
         cpu: 2000m
@@ -39,7 +39,7 @@ spec:
       difficulty: "hard"
       motd: "\u00a7apotatoes\u00a7d are \u00a79op\u00a7d"
       ops: "phybros,gimgam5000"
-      memory: 4096M
+      memory: 5120M
       serviceType: LoadBalancer
       loadBalancerIP: "${SVC_MC_POTATO_SMP_ADDR}"
     persistence:
