@@ -19,10 +19,8 @@ spec:
     resources:
       requests:
         memory: 512Mi
-        cpu: 500m
       limits:
         memory: 4Gi
-        cpu: 2000m
     minecraftServer:
       eula: "TRUE"
       type: "PAPER"
