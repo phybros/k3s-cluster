@@ -27,7 +27,7 @@ spec:
       version: "1.19.2"
       pvp: "true"
       gameMode: survival
-      vanillaTweaksShareCodes: ["MaEdu5", "0PQfIm", "x0CZVp"]
+      vanillaTweaksShareCodes: ["MaEdu5", "0PQfIm", "x0CZVp", "Zu07nn"]
       levelSeed: "iamacamel"
       overrideServerProperties: true
       whitelist: "phybros,gimgam5000"

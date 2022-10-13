@@ -25,7 +25,7 @@ spec:
       eula: "TRUE"
       type: "PAPER"
       version: "1.19.2"
-      vanillaTweaksShareCodes: ["MaEdu5", "0PQfIm", "x0CZVp"]
+      vanillaTweaksShareCodes: ["MaEdu5", "0PQfIm", "x0CZVp", "Zu07nn"]
       pvp: "true"
       gameMode: creative
       levelSeed: "iamacamel"
@@ -33,6 +33,7 @@ spec:
       whitelist: "phybros,gimgam5000"
       viewDistance: 10
       spawnProtection: "0"
+      icon: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/aa/Golden_Carrot_JE4_BE2.png"
       difficulty: "hard"
       motd: "\u00a7agolden carrots\u00a7d are \u00a79op\u00a7d"
       ops: "phybros,gimgam5000"
