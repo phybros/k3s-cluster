@@ -36,7 +36,6 @@ spec:
       icon: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c1/Potato_JE3_BE2.png"
       difficulty: "hard"
       motd: "\u00a7apotatoes\u00a7d are \u00a79op\u00a7d"
-      ops: "phybros,gimgam5000"
       memory: 5120M
       serviceType: LoadBalancer
       loadBalancerIP: "${SVC_MC_POTATO_SMP_ADDR}"
