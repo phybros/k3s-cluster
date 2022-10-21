@@ -39,6 +39,10 @@ spec:
       memory: 5120M
       serviceType: LoadBalancer
       loadBalancerIP: "${SVC_MC_POTATO_SMP_ADDR}"
+      rcon:
+        enabled: true
+        port: 25575
+        password: "${SECRET_MC_RCON_PASSWORD}"
     persistence:
       dataDir:
         enabled: true
