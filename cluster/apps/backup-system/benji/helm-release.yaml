@@ -123,7 +123,7 @@ spec:
       image:
         registry: docker.io
         repository: prom/pushgateway
-        tag: v1.4.3
+        tag: v1.5.1
         pullPolicy: IfNotPresent
       nameOverride: pushgateway
   postRenderers:
