@@ -27,3 +27,4 @@ resources:
   - gitea-charts.yaml
   - bjw-s-helm-charts.yaml
   - phybros-charts.yaml
+  - benji-charts.yaml

@@ -9,10 +9,11 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: ./charts/benji
+      # renovate: registryUrl=https://benji-backup.me/helm-charts/
+      chart: benji
       version: 1.1.0
       sourceRef:
-        kind: GitRepository
+        kind: HelmRepository
         name: benji-charts
         namespace: flux-system
       interval: 5m
