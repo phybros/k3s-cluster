@@ -115,6 +115,8 @@ spec:
       enabled: true
     postgresql:
       enabled: true
+      image:
+        tag: 14
       auth:
         enablePostgresUser: false
         username: benji
