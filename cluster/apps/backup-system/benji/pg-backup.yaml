@@ -43,6 +43,8 @@ metadata:
 spec:
   # Backup the database every day at 5AM
   schedule: "00 05 * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
   jobTemplate:
     spec:
       template:
