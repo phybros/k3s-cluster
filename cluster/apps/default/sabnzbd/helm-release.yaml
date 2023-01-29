@@ -50,8 +50,11 @@ spec:
         subPath: data
       complete-downloads:
         enabled: true
-        existingClaim: sabnzbd-temp-v1
-        subPath: complete
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS_ADDR}"
+            path: "/mergerfs/storage/temp/downloads/complete"
         mountPath: /downloads
       incomplete-downloads:
         enabled: true
