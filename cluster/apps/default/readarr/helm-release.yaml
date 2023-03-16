@@ -89,4 +89,5 @@ spec:
         mountPath: /media
       config:
         enabled: true
+        type: custom
         existingClaim: readarr-config-v1
