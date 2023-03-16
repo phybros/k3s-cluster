@@ -54,10 +54,5 @@ spec:
         volumeSpec:
           nfs:
             server: "${NAS_ADDR}"
-            path: "/mergerfs/storage/temp/downloads/complete"
-        mountPath: /downloads
-      incomplete-downloads:
-        enabled: true
-        existingClaim: sabnzbd-temp-v1
-        subPath: incomplete
-        mountPath: /incomplete-downloads
+            path: "/mergerfs/storage"
+        mountPath: "/mergerfs/storage"
