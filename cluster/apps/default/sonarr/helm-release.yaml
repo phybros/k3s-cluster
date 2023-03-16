@@ -65,13 +65,5 @@ spec:
         volumeSpec:
           nfs:
             server: "${NAS_ADDR}"
-            path: "/mergerfs/storage/media/tv"
-        mountPath: /tv
-      downloads:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${NAS_ADDR}"
-            path: "/mergerfs/storage/temp/downloads/complete"
-        mountPath: /downloads
+            path: "/mergerfs/storage"
+        mountPath: "/mergerfs/storage"
