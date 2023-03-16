@@ -36,7 +36,7 @@ spec:
     env:
       TZ: America/New_York
       READARR__INSTANCE_NAME: Readarr
-      READARR__PORT: &port 80
+      READARR__PORT: &port 8787
       READARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
       READARR__LOG_LEVEL: debug
     service:
