@@ -38,7 +38,7 @@ spec:
       READARR__INSTANCE_NAME: Readarr
       READARR__PORT: &port 80
       READARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
-      READARR__LOG_LEVEL: info
+      READARR__LOG_LEVEL: debug
     service:
       main:
         ports:
