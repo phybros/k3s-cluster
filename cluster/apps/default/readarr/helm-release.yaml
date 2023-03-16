@@ -78,15 +78,18 @@ spec:
               - "readarr.${SECRET_DOMAIN}"
             secretName: "readarr-tls"
     podSecurityContext:
-      supplementalGroups:
-        - 3000
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: OnRootMismatch
+      supplementalGroups: [3000]
     persistence:
       media:
         enabled: true
         type: nfs
         server: "${NAS_ADDR}"
-        path: "/mergerfs/storage/media/books"
-        mountPath: /media
+        path: "/mergerfs/storage"
+        mountPath: "/mergerfs/storage"
       config:
         enabled: true
         type: custom
