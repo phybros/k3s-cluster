@@ -92,5 +92,5 @@ spec:
         mountPath: "/mergerfs/storage"
       config:
         enabled: true
-        type: custom
         existingClaim: readarr-config-v1
+        mountPath: "/config"
