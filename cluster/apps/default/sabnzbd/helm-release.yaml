@@ -45,8 +45,8 @@ spec:
         sabnzbd.default,
         sabnzbd.default.svc,
         sabnzbd.default.svc.cluster,
-        sabnzbd.default.svc.cluster.local
-
+        sabnzbd.default.svc.cluster.local,
+        "sabnzbd.${SECRET_DOMAIN}"
     service:
       main:
         ports:
