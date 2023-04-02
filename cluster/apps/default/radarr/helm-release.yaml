@@ -15,7 +15,22 @@ spec:
         kind: HelmRepository
         name: bjw-s-helm-charts
         namespace: flux-system
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
+    controller:
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/radarr-develop
       tag: 4.4.2.6956@sha256:900277ef469bcb21cf24963c39b17e0f1a5e64a445b8a9d6ee80750807911339
