@@ -8,20 +8,58 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: sonarr
-      version: 16.3.2
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
+      chart: app-template
+      version: 1.3.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-helm-charts
         namespace: flux-system
-      interval: 5m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
+    controller:
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/k8s-at-home/sonarr
-      tag: v3.0.9.1549
+      repository: ghcr.io/onedr0p/sonarr-develop
+      tag: 4.0.0.419@sha256:5e39d17f1ad990aff1a930519daa75757ba100486feb9581ecea1aaae393a8ae
     env:
       TZ: "America/New_York"
+      SONARR__INSTANCE_NAME: Sonarr
+      SONARR__PORT: &port 8787
+      SONARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
+      SONARR__LOG_LEVEL: info
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+    probes:
+      liveness: &probes
+        enabled: true
+        custom: true
+        spec:
+          httpGet:
+            path: /ping
+            port: *port
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+      readiness: *probes
+      startup:
+        enabled: false
     podSecurityContext:
       supplementalGroups:
         - 3000
@@ -59,6 +97,7 @@ spec:
       config:
         enabled: true
         existingClaim: sonarr-config-v1
+        mountPath: /config
       media:
         enabled: true
         type: custom
