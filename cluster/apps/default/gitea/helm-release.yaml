@@ -59,15 +59,15 @@ spec:
         backup.velero.io/backup-volumes: data
     postgresql:
       enabled: true
-      primary:
-        podAnnotations:
-          backup.velero.io/backup-volumes: data
       global:
         postgresql:
-          postgresqlDatabase: gitea
-          postgresqlUsername: gitea
-          postgresqlPassword: "${SECRET_GITEA_PG_PASSWORD}"
-          servicePort: 5432
+          auth:
+            password: "${SECRET_GITEA_PG_PASSWORD}"
+            database: gitea
+            username: gitea
+          service:
+            ports:
+              postgresql: 5432
       image:
         registry: docker.io
         repository: bitnami/postgresql
