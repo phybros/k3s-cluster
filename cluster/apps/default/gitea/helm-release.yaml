@@ -55,8 +55,6 @@ spec:
           DISABLE_REGISTRATION: "true"
         security:
           SECRET_KEY: "${SECRET_GITEA_SECRET}"
-      podAnnotations:
-        backup.velero.io/backup-volumes: data
     postgresql:
       enabled: true
       global:
@@ -68,11 +66,8 @@ spec:
           service:
             ports:
               postgresql: 5432
-      image:
-        registry: docker.io
-        repository: bitnami/postgresql
-        tag: 9.6.24-debian-10-r44
-      persistence:
-        enabled: true
-        existingClaim: gitea-db-v1
-        subPath: data
+      primary:
+        persistence:
+          enabled: true
+          existingClaim: gitea-db-v1
+          subPath: data
