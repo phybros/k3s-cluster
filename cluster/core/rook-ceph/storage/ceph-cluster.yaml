@@ -7,6 +7,8 @@ data:
   config: |
     [global]
     osd_pool_default_size = 2
+    [mon]
+    mon_data_avail_warn = 10
 
 ---
 apiVersion: ceph.rook.io/v1
