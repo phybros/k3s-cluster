@@ -1,0 +1,73 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: paperless-ngx
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-helm-charts
+        namespace: flux-system
+  dependsOn:
+    - name: default-paperless-redis
+    - name: default-paperless-db
+  values:
+    image:
+      repository: ghcr.io/paperless-ngx/paperless-ngx
+      tag: 1.14.0
+    env:
+      COMPOSE_PROJECT_NAME: paperless-ngx
+      PAPERLESS_TIME_ZONE: Europe/Berlin
+      PAPERLESS_URL: http{{if ne ( len .Values.ingress.main.tls ) 0 }}s{{end}}://{{ (first .Values.ingress.main.hosts).host }}
+      PAPERLESS_DBHOST: paperless-postgresql
+      PAPERLESS_DBNAME: paperless-ngx
+      PAPERLESS_DBUSER: paperless-ngx
+      PAPERLESS_DBPASS: paperless-ngx
+      PAPERLESS_REDIS: redis://paperless-redis-master:6379
+      USERMAP_UID: 568
+      USERMAP_GID: 568
+      PAPERLESS_CONSUMPTION_DIR: /paperless/consume
+      PAPERLESS_DATA_DIR: /paperless/data
+      PAPERLESS_MEDIA_ROOT: /paperless/media
+      PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{title}"
+      PAPERLESS_FILENAME_FORMAT_REMOVE_NONE: true
+      PAPERLESS_CONSUMER_POLLING: 60
+      PAPERLESS_CONSUMER_DELETE_DUPLICATES: true
+      PAPERLESS_CONSUMER_RECURSIVE: true
+      PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: true
+      PAPERLESS_OCR_LANGUAGE: eng
+      PAPERLESS_SECRET_KEY: ${SECRET_PAPERLESS_NGX_SECRET_KEY}
+    service:
+      main:
+        ports:
+          http:
+            port: 8000
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.tls: "true"
+          traefik.ingress.kubernetes.io/router.middlewares: "networking-traefik-forward-auth@kubernetescrd"
+        hosts:
+          - host: "paperless.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "paperless.${SECRET_DOMAIN}"
+            secretName: "paperless-tls"
+    persistence:
+      data:
+        enabled: true
+        mountPath: /paperless
+        existingClaim: paperless-data-v1
