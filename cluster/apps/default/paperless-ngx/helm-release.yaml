@@ -15,8 +15,8 @@ spec:
         name: bjw-s-helm-charts
         namespace: flux-system
   dependsOn:
-    - name: default-paperless-redis
-    - name: default-paperless-db
+    - name: paperless-redis
+    - name: paperless-db
   values:
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
