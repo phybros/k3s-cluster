@@ -17,6 +17,8 @@ spec:
   dependsOn:
     - name: paperless-redis
     - name: paperless-db
+    - name: tika
+    - name: gotenberg
   values:
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
@@ -43,6 +45,9 @@ spec:
       PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: true
       PAPERLESS_OCR_LANGUAGE: eng
       PAPERLESS_SECRET_KEY: ${SECRET_PAPERLESS_NGX_SECRET_KEY}
+      PAPERLESS_TIKA_ENABLED: true
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
+      PAPERLESS_TIKA_ENDPOINT: http://tika:9998
     service:
       main:
         ports:
