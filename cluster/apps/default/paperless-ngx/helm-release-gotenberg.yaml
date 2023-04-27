@@ -18,6 +18,10 @@ spec:
     image:
       repository: gotenberg/gotenberg
       tag: 7
+    command:
+      - "gotenberg"
+      - "--chromium-disable-javascript=true"
+      - "--chromium-allow-list=file:///tmp/.*"
     service:
       main:
         ports:
