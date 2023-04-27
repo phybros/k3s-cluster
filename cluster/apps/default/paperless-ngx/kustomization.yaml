@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - config-pvc.yaml
+  - helm-release-gotenberg.yaml
   - helm-release-db.yaml
   - helm-release-redis.yaml
   - helm-release.yaml
