@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release-gotenberg.yaml
+  - helm-release-tika.yaml
   - helm-release-db.yaml
   - helm-release-redis.yaml
   - helm-release.yaml
