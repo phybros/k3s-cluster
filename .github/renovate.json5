@@ -117,7 +117,7 @@
       "matchDatasources": ["docker"],
       "versioning": "loose",
       "matchPackageNames": [
-        "ghcr.io/k8s-at-home/plex"
+        
       ]
     }
   ]
