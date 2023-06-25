@@ -26,6 +26,7 @@ spec:
       config:
         enabled: true
         existingClaim: appdaemon-config-v1
+        mountPath: /conf
     env:
       TZ: "America/New_York"
       HA_URL: "http://192.168.86.212:8123"
