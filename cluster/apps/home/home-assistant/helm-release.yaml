@@ -40,6 +40,10 @@ spec:
             enabled: true
             port: 21063
             targetPort: 21063
+          homekittcp2:
+            enabled: true
+            port: 21065
+            targetPort: 21065
       otherudp:
         enabled: true
         primary: false
