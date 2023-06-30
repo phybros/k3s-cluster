@@ -66,3 +66,5 @@ nav:
     - Rook Ceph: storage/rook-ceph.md
     - Backups: storage/backups.md
     - Restores: storage/restores.md
+  - Apps:
+    - List: apps/apps.md
