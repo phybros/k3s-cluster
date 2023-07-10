@@ -33,7 +33,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/sabnzbd
-      tag: 4.0.2
+      tag: 4.0.3
     podSecurityContext:
       supplementalGroups:
         - 3000
