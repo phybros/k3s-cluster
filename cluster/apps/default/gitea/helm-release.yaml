@@ -43,7 +43,7 @@ spec:
           secretName: "gitea-tls"
     persistence:
       enabled: true
-      existingClaim: gitea-config-v1
+      claimName: gitea-config-v1
     gitea:
       config:
         APP_NAME: "24Mc Code"
