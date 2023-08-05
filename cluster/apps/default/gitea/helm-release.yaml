@@ -55,6 +55,8 @@ spec:
           DISABLE_REGISTRATION: "true"
         security:
           SECRET_KEY: "${SECRET_GITEA_SECRET}"
+    postgresql-ha:
+      enabled: false
     postgresql:
       enabled: true
       global:
