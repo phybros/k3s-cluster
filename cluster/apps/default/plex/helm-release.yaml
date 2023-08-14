@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/plex
-      tag: 1.32.2.7100-248a2daf0@sha256:24b39030607af2ac007d48d508acdb136a925c1c66c2b495e18989eb857082ed
+      tag: 1.32.5.7349-8f4248874
     env:
       TZ: "America/New_York"
       PLEX_CLAIM: "${SECRET_PLEX_CLAIM}"
