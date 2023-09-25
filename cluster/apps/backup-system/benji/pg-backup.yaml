@@ -51,7 +51,7 @@ spec:
         spec:
           containers:
             - name: postgres-backup
-              image: postgres:14
+              image: postgres:16
               command: ["/bin/sh"]
               args:
                 [

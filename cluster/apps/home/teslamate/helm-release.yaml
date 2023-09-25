@@ -38,7 +38,7 @@ spec:
       enabled: true
       image:
         repository: postgres
-        tag: '14'
+        tag: '16'
       auth:
         postgresPassword: teslamate
         database: teslamate
