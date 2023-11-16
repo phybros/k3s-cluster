@@ -4,9 +4,15 @@ First, add these to `~/.zshrc` to get the `benji`, `benji-restore-pvc` and `benj
 
 ```
 # Benji Aliases
-alias benji="k exec -i -n backup-system $(k get po -n backup-system --selector=app.kubernetes.io/component=benji,app.kubernetes.io/instance=benji,app.kubernetes.io/name=benji-k8s -o jsonpath='{.items[0].metadata.name}') -c benji -- benji"
-alias benji-restore-pvc="k exec -i -n backup-system $(k get po -n backup-system --selector=app.kubernetes.io/component=benji,app.kubernetes.io/instance=benji,app.kubernetes.io/name=benji-k8s -o jsonpath='{.items[0].metadata.name}') -c benji -- benji-restore-pvc"
-alias benji-command="k exec -i -n backup-system $(k get po -n backup-system --selector=app.kubernetes.io/component=benji,app.kubernetes.io/instance=benji,app.kubernetes.io/name=benji-k8s -o jsonpath='{.items[0].metadata.name}') -c benji -- benji-command"
+do_benji_subcommand() {
+  benji_pod=$(k get po -n backup-system --selector=app.kubernetes.io/component=maint,app.kubernetes.io/instance=benji,app.kubernetes.io/name=benji -o jsonpath='{.items[0].metadata.name}')
+  k exec -i -n backup-system "$benji_pod" -c benji -- $1
+  return "$?"
+}
+alias benji="do_benji_subcommand benji"
+alias benji-restore-pvc="do_benji_subcommand benji-restore-pvc"
+alias benji-command="do_benji_subcommand benji-command"
+alias benji-backup-pvc="do_benji_subcommand benji-backup-pvc"
 ```
 
 ## Storage Stats
