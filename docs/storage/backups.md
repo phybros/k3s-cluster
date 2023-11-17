@@ -6,7 +6,7 @@ First, add these to `~/.zshrc` to get the `benji`, `benji-restore-pvc` and `benj
 # Benji Aliases
 do_benji_subcommand() {
   benji_pod=$(k get po -n backup-system --selector=app.kubernetes.io/component=maint,app.kubernetes.io/instance=benji,app.kubernetes.io/name=benji -o jsonpath='{.items[0].metadata.name}')
-  k exec -i -n backup-system "$benji_pod" -c benji -- $1
+  k exec -i -n backup-system "$benji_pod" -c benji -- $@
   return "$?"
 }
 alias benji="do_benji_subcommand benji"
