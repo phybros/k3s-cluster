@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
       chart: app-template
-      version: 1.5.1
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-helm-charts
@@ -19,23 +19,29 @@ spec:
     - name: home-assistant
   # See https://github.com/bjw-s/helm-charts/blob/main/charts/library/common/values.yaml
   values:
-    image:
-      repository: docker.io/acockburn/appdaemon
-      tag: 4.4.2
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: docker.io/acockburn/appdaemon
+              tag: 4.4.2
+            env:
+              TZ: "America/New_York"
+              HA_URL: "http://192.168.86.212:8123"
+              DASH_URL: "http://$HOSTNAME:5050"
+              TOKEN: "${SECRET_APPDAEMON_TOKEN}"
+              LATITUDE: "${SECRET_LAT}"
+              LONGITUDE: "${SECRET_LNG}"
+              ELEVATION: "${SECRET_ELEVATION}"
+
     persistence:
       config:
         enabled: true
         existingClaim: appdaemon-config-v1
-        mountPath: /conf
-    env:
-      TZ: "America/New_York"
-      HA_URL: "http://192.168.86.212:8123"
-      DASH_URL: "http://$HOSTNAME:5050"
-      TOKEN: "${SECRET_APPDAEMON_TOKEN}"
-      LATITUDE: "${SECRET_LAT}"
-      LONGITUDE: "${SECRET_LNG}"
-      ELEVATION: "${SECRET_ELEVATION}"
-
+        globalMounts:
+          - path: /conf
+   
     # -- Configures service settings for the chart.
     # @default -- See values.yaml
     service:
@@ -47,7 +53,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        className: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -57,6 +63,9 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
