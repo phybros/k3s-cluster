@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-helm-charts
@@ -20,43 +20,49 @@ spec:
     - name: tika
     - name: gotenberg
   values:
-    image:
-      repository: ghcr.io/paperless-ngx/paperless-ngx
-      tag: 2.1.3
-    env:
-      COMPOSE_PROJECT_NAME: paperless-ngx
-      PAPERLESS_TIME_ZONE: Europe/Berlin
-      PAPERLESS_URL: http{{if ne ( len .Values.ingress.main.tls ) 0 }}s{{end}}://{{ (first .Values.ingress.main.hosts).host }}
-      PAPERLESS_DBHOST: paperless-postgresql
-      PAPERLESS_DBNAME: paperless-ngx
-      PAPERLESS_DBUSER: paperless-ngx
-      PAPERLESS_DBPASS: paperless-ngx
-      PAPERLESS_REDIS: redis://paperless-redis-master:6379
-      USERMAP_UID: 568
-      USERMAP_GID: 568
-      PAPERLESS_CONSUMPTION_DIR: /paperless/consume
-      PAPERLESS_DATA_DIR: /paperless/data
-      PAPERLESS_MEDIA_ROOT: /paperless/media
-      PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{title}"
-      PAPERLESS_FILENAME_FORMAT_REMOVE_NONE: true
-      PAPERLESS_CONSUMER_POLLING: 60
-      PAPERLESS_CONSUMER_DELETE_DUPLICATES: true
-      PAPERLESS_CONSUMER_RECURSIVE: true
-      PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: true
-      PAPERLESS_OCR_LANGUAGE: eng
-      PAPERLESS_SECRET_KEY: ${SECRET_PAPERLESS_NGX_SECRET_KEY}
-      PAPERLESS_TIKA_ENABLED: true
-      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
-      PAPERLESS_TIKA_ENDPOINT: http://tika:9998
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/paperless-ngx/paperless-ngx
+              tag: 2.1.3
+            env:
+              COMPOSE_PROJECT_NAME: paperless-ngx
+              PAPERLESS_TIME_ZONE: Europe/Berlin
+              PAPERLESS_URL: http{{if ne ( len .Values.ingress.main.tls ) 0 }}s{{end}}://{{ (first .Values.ingress.main.hosts).host }}
+              PAPERLESS_DBHOST: paperless-postgresql
+              PAPERLESS_DBNAME: paperless-ngx
+              PAPERLESS_DBUSER: paperless-ngx
+              PAPERLESS_DBPASS: paperless-ngx
+              PAPERLESS_REDIS: redis://paperless-redis-master:6379
+              USERMAP_UID: 568
+              USERMAP_GID: 568
+              PAPERLESS_CONSUMPTION_DIR: /paperless/consume
+              PAPERLESS_DATA_DIR: /paperless/data
+              PAPERLESS_MEDIA_ROOT: /paperless/media
+              PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{title}"
+              PAPERLESS_FILENAME_FORMAT_REMOVE_NONE: true
+              PAPERLESS_CONSUMER_POLLING: 60
+              PAPERLESS_CONSUMER_DELETE_DUPLICATES: true
+              PAPERLESS_CONSUMER_RECURSIVE: true
+              PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: true
+              PAPERLESS_OCR_LANGUAGE: eng
+              PAPERLESS_SECRET_KEY: ${SECRET_PAPERLESS_NGX_SECRET_KEY}
+              PAPERLESS_TIKA_ENABLED: true
+              PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
+              PAPERLESS_TIKA_ENDPOINT: http://tika:9998
+
     service:
       main:
         ports:
           http:
             port: 8000
+
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        className: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -67,12 +73,17 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - "paperless.${SECRET_DOMAIN}"
             secretName: "paperless-tls"
+
     persistence:
       data:
         enabled: true
-        mountPath: /paperless
         existingClaim: paperless-data-v1
+        globalMounts:
+          - path: /paperless
