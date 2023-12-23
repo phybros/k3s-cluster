@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
       chart: app-template
-      version: 1.5.1
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-helm-charts
@@ -26,43 +26,51 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+
   values:
-    controller:
-      type: statefulset
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/onedr0p/radarr-develop
-      tag: 5.2.5.8361@sha256:c6b3d06ce98faacdd2e91e70763d0c96ab1421aa4858f45957a14d91ff9490a0
     env:
       TZ: "America/New_York"
       RADARR__INSTANCE_NAME: Radarr
       RADARR__PORT: &port 8787
       RADARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
       RADARR__LOG_LEVEL: info
+
+    defaultPodOptions:
+      securityContext:
+        supplementalGroups:
+          - 3000
+
+    controllers:
+      main:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        image:
+          repository: ghcr.io/onedr0p/radarr-develop
+          tag: 5.2.5.8361@sha256:c6b3d06ce98faacdd2e91e70763d0c96ab1421aa4858f45957a14d91ff9490a0
+        
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /ping
+                port: *port
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
+
     service:
       main:
         ports:
           http:
             port: *port
-    probes:
-      liveness: &probes
-        enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /ping
-            port: *port
-          initialDelaySeconds: 0
-          periodSeconds: 10
-          timeoutSeconds: 1
-          failureThreshold: 3
-      readiness: *probes
-      startup:
-        enabled: false
-    podSecurityContext:
-      supplementalGroups:
-        - 3000
+    
     metrics:
       enabled: true
       serviceMonitor:
@@ -75,10 +83,11 @@ spec:
           port: 9794
           additionalMetrics: true
           unknownQueueItems: false
+
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        className: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -89,20 +98,24 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - "radarr.${SECRET_DOMAIN}"
             secretName: "radarr-tls"
+
     persistence:
       config:
-        enabled: true
         existingClaim: radarr-config-v1
-        mountPath: /config
+        globalMounts:
+          - path: /config
       media:
-        enabled: true
         type: custom
         volumeSpec:
           nfs:
             server: "${NAS_ADDR}"
             path: "/mergerfs/storage"
-        mountPath: /mergerfs/storage
+        globalMounts:
+          - path: /mergerfs/storage
