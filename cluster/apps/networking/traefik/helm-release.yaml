@@ -79,8 +79,7 @@ spec:
     pilot:
       enabled: false
     experimental:
-      plugins:
-        enabled: false
+      plugins: {}
     resources:
       requests:
         memory: 100Mi
