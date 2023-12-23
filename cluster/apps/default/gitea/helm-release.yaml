@@ -83,5 +83,5 @@ spec:
         enabled: true
         usePassword: false
         cluster:
-          nodes: 1 # default: 6
-          replicas: 0 # default: 1
+          nodes: 3
+          replicas: 1
