@@ -84,4 +84,4 @@ spec:
         usePassword: false
         cluster:
           nodes: 3
-          replicas: 1
+          replicas: 0
