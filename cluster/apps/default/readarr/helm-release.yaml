@@ -95,12 +95,14 @@ spec:
         supplementalGroups: [3000]
     persistence:
       media:
+        enabled: true
         type: nfs
         server: "${NAS_ADDR}"
         path: "/mergerfs/storage"
         globalMounts:
           - path: "/mergerfs/storage"
       config:
+        enabled: true
         existingClaim: readarr-config-v1
         globalMounts:
           - path: "/config"
