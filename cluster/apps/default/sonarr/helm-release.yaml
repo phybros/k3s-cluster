@@ -10,11 +10,12 @@ spec:
     spec:
       # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
       chart: app-template
-      version: 1.5.1
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-helm-charts
         namespace: flux-system
+
   maxHistory: 3
   install:
     createNamespace: true
@@ -26,43 +27,52 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+
   values:
-    controller:
-      type: statefulset
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/onedr0p/sonarr-develop
-      tag: 4.0.0.738@sha256:11be16eff4fe2b2e0238444f0dfd9e2a93553f337175f17ed381dea96db07cab
-    env:
-      TZ: "America/New_York"
-      SONARR__INSTANCE_NAME: Sonarr
-      SONARR__PORT: &port 8787
-      SONARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
-      SONARR__LOG_LEVEL: info
+    controllers:
+      main:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/onedr0p/sonarr-develop
+              tag: 4.0.0.738@sha256:11be16eff4fe2b2e0238444f0dfd9e2a93553f337175f17ed381dea96db07cab
+            env:
+              TZ: "America/New_York"
+              SONARR__INSTANCE_NAME: Sonarr
+              SONARR__PORT: &port 8787
+              SONARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
+              SONARR__LOG_LEVEL: info
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+
     service:
       main:
         ports:
           http:
             port: *port
-    probes:
-      liveness: &probes
-        enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /ping
-            port: *port
-          initialDelaySeconds: 0
-          periodSeconds: 10
-          timeoutSeconds: 1
-          failureThreshold: 3
-      readiness: *probes
-      startup:
-        enabled: false
-    podSecurityContext:
-      supplementalGroups:
-        - 3000
+
+
+    defaultPodOptions:
+      securityContext:
+        supplementalGroups:
+          - 3000
+
     metrics:
       enabled: true
       serviceMonitor:
@@ -75,10 +85,11 @@ spec:
           port: 9794
           additionalMetrics: true
           unknownQueueItems: false
+
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        className: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -89,15 +100,18 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - "sonarr.${SECRET_DOMAIN}"
             secretName: "sonarr-tls"
+
     persistence:
       config:
         enabled: true
         existingClaim: sonarr-config-v1
-        mountPath: /config
       media:
         enabled: true
         type: custom
@@ -105,4 +119,5 @@ spec:
           nfs:
             server: "${NAS_ADDR}"
             path: "/mergerfs/storage"
-        mountPath: "/mergerfs/storage"
+        globalMounts:
+          - path: "/mergerfs/storage"
