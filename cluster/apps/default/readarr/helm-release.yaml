@@ -27,6 +27,12 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    env:
+      TZ: America/New_York
+      READARR__INSTANCE_NAME: Readarr
+      READARR__PORT: &port 8787
+      READARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
+      READARR__LOG_LEVEL: info
     controllers:
       main:
         type: statefulset
@@ -52,12 +58,6 @@ spec:
               readiness: *probes
               startup:
                 enabled: false
-    env:
-      TZ: America/New_York
-      READARR__INSTANCE_NAME: Readarr
-      READARR__PORT: &port 8787
-      READARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
-      READARR__LOG_LEVEL: info
     service:
       main:
         ports:
