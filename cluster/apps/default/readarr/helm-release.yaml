@@ -27,12 +27,6 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    env:
-      TZ: America/New_York
-      READARR__INSTANCE_NAME: Readarr
-      READARR__PORT: &port 8787
-      READARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
-      READARR__LOG_LEVEL: info
     controllers:
       main:
         type: statefulset
@@ -40,6 +34,13 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           main:
+            env:
+              TZ: America/New_York
+              READARR__INSTANCE_NAME: Readarr
+              READARR__PORT: &port 8787
+              READARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
+              READARR__LOG_LEVEL: info
+            
             image:
               repository: ghcr.io/onedr0p/readarr-develop
               tag: 0.3.12.2327
