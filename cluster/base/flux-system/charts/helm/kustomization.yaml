@@ -27,3 +27,4 @@ resources:
   - bjw-s-helm-charts.yaml
   - phybros-charts.yaml
   - benji-charts.yaml
+  - pod-arcade.yaml
