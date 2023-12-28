@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: pod-arcade-v1
-  namespace: default
+  namespace: games
   annotations:
     benji-backup.me/fsfreeze: "yes"
   labels:
