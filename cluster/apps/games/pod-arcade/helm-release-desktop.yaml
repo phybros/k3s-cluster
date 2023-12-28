@@ -43,10 +43,28 @@ spec:
               MQTT_HOST: ws://pa-server-server/mqtt
               DESKTOP_ID: pa-retroarch
               DESKTOP_PSK: magicPa$$wordForDesktops
-
+              
+              WLR_BACKENDS: headless
+              DRI_DEVICE_MODE: MKNOD
+              UINPUT_DEVICE_MODE: NONE
+              DISABLE_HW_ACCEL: "false"
+              WLR_RENDERER: gles2
+              WLR_NO_HARDWARE_CURSORS: "1"
+              FFMPEG_HARDWARE: "1"
+              XDG_RUNTIME_DIR: /tmp/sway
+              PULSE_SERVER: unix:/tmp/pulse/pulse-socket
+              DISPLAY: :0
 
             image:
-              repository: gameonwhales/retroarch
+              repository: ghcr.io/pod-arcade/desktop
+              tag: main
+          sidecar:
+            env:
+              PUID: "1000"
+              PGID: "1000"
+              UNAME: ubuntu
+            image:
+              repository:  gameonwhales/retroarch
               tag: edge
 
     service:
