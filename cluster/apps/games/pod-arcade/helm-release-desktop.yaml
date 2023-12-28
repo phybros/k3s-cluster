@@ -60,12 +60,9 @@ spec:
             port: 1883
 
     persistence:
-      media:
+
+      retro:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${NAS_ADDR}"
-            path: "/mergerfs/storage"
+        existingClaim: pod-arcade-v1
         globalMounts:
           - path: /home/ubuntu/.config/retroarch
