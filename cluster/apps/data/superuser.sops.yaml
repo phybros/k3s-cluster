@@ -4,16 +4,16 @@ metadata:
     name: test-pg-superuser
     namespace: data
 data:
-    username: ENC[AES256_GCM,data:D+ZyCoZd34oo,iv:XYPpcvPrma7TSaE6ABUaEA+T82D1TAzPhz/fF3MI8Rg=,tag:mqJoT34nSmkYJpd/7B61Og==,type:str]
-    password: ENC[AES256_GCM,data:tLVILCdb1C86721ULamEnxY=,iv:+sBmYLuj/+0yTEhFu0O5OtiWC7rTdBLckvTn/wR5OY8=,tag:HqZM/C4thy0CUVXO/hXKxA==,type:str]
+    username: ENC[AES256_GCM,data:EWgQef8elcDx0grB,iv:0+Inhd4vPYNIabwtGg33sZZsZOue4DVkKcf5XR80OvM=,tag:25ZsJoNxsM+t1S46wxw9HQ==,type:str]
+    password: ENC[AES256_GCM,data:VAo9nbbpkvPmalJa3ZlESUGV66uNhQio,iv:YP1FH0lYC5BgnD/CmTILeZ30icVw0nw/gc6j3rqHLSc=,tag:VdvDtQrOig9hUfN/dV7CQw==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2023-12-31T16:59:33Z"
-    mac: ENC[AES256_GCM,data:uz7IrEzOpmzSVah5KFp3ABoeY06T/GbYbd/syGhDOfA0eU0guq7q5mGC8E40s8SIUk1Cr8Beobl8IN72OcLcDsNI7/FHyKYWn5wuyRjZDrdTig6jAN4xTD+6ohnp/Zb9a0G98hV/ZwcQlfpCIh8jpEtotZGWsZzAuKCeTHzC0Nc=,iv:m+0cG5nHd/8p+5hyLatS5PZIGphe7B/GE8UleECcwUY=,tag:nc3sT08YGx2sB1mPw5DPpg==,type:str]
+    lastmodified: "2023-12-31T17:03:15Z"
+    mac: ENC[AES256_GCM,data:oQzOU3giijaFOhf+tWiAgjBEtEYhP4B9KrZCjropD5bOM7+tjOhTdC2JX3Yc1Ut/uuNfHb9w0o6B8FW5eEYkO+mpLyFq2fdquZsdDvPOQ0tOoqj/oqllCFqRhZFXTl43DoXviXD7LzqjCXaVzA3lap8UaORBzCYGHz18qOeCHpQ=,iv:d2QXMlbS8aCpObjFgu+cCVNuotC3K/F2u2NWmD8hRm4=,tag:khFqrXxshcwDg+dserfEBA==,type:str]
     pgp:
         - created_at: "2021-10-12T13:23:58Z"
           enc: |
