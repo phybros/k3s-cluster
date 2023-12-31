@@ -11,3 +11,4 @@ resources:
   - games.yaml
   - media.yaml
   - data.yaml
+  - db.yaml
