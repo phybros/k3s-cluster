@@ -10,11 +10,7 @@ spec:
     initdb:
       database: test
       owner: test
-      secret:
-        name: test-pg-password
   enableSuperuserAccess: true  # Required for creating extensions
-  superuserSecret:
-    name: test-pg-superuser
   storage:
     size: 5Gi
   monitoring:
