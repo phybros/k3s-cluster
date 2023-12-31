@@ -1,5 +1,6 @@
 apiVersion: v1
 kind: Secret
+type: kubernetes.io/basic-auth
 metadata:
     name: test-pg-superuser
     namespace: data
@@ -12,8 +13,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2023-12-31T17:03:15Z"
-    mac: ENC[AES256_GCM,data:oQzOU3giijaFOhf+tWiAgjBEtEYhP4B9KrZCjropD5bOM7+tjOhTdC2JX3Yc1Ut/uuNfHb9w0o6B8FW5eEYkO+mpLyFq2fdquZsdDvPOQ0tOoqj/oqllCFqRhZFXTl43DoXviXD7LzqjCXaVzA3lap8UaORBzCYGHz18qOeCHpQ=,iv:d2QXMlbS8aCpObjFgu+cCVNuotC3K/F2u2NWmD8hRm4=,tag:khFqrXxshcwDg+dserfEBA==,type:str]
+    lastmodified: "2023-12-31T17:16:17Z"
+    mac: ENC[AES256_GCM,data:Vz2Yk+aCuH7e02FjwmsNlsFn0nuY+2WTHnc0W+LbE4UCNw3ObHiNCi6nXxwUoI6QAZXaQgWOqyg+hM0AH9AGzKmoHFQUWJPAXvlrMhwMw8M6kNXQbrZt3c0tEjhEDeyyIct/ZKhgWIuWzeyu2iyEPDobZqj5skYbsg0rVU+9vB0=,iv:UDTOOKcajRhJ3pRwrz8+ZCnhChbaYqu94izSYcWoDTk=,tag:rWxeBzN/VRAVp3Zgjq3R0g==,type:str]
     pgp:
         - created_at: "2021-10-12T13:23:58Z"
           enc: |
