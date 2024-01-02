@@ -12,6 +12,7 @@ spec:
       owner: test
   enableSuperuserAccess: true  # Required for creating extensions
   storage:
+    storageClass: rook-ceph-block
     size: 5Gi
   monitoring:
     enablePodMonitor: true
