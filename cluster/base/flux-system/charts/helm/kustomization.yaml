@@ -29,3 +29,5 @@ resources:
   - benji-charts.yaml
   - pod-arcade.yaml
   - cnpg-charts.yaml
+  - backube-charts.yaml
+  - piraeus-charts.yaml
