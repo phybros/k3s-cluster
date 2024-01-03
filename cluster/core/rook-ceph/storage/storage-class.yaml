@@ -9,6 +9,7 @@ parameters:
   pool: replicapool
   imageFormat: "2"
   imageFeatures: layering
+  storageclass.kubernetes.io/is-default-class: "true"
   csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
   csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
   csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
@@ -18,3 +19,4 @@ parameters:
   csi.storage.k8s.io/fstype: ext4
 reclaimPolicy: Delete
 allowVolumeExpansion: true
+isDefault: true
