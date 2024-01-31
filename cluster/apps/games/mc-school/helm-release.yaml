@@ -26,7 +26,7 @@ spec:
       eula: "TRUE"
       type: "PAPER"
       version: "1.20.4"
-      pvp: "true"
+      pvp: "default"
       gameMode: survival
       vanillaTweaksShareCodes: ["b9k4UL"]
       overrideServerProperties: true
