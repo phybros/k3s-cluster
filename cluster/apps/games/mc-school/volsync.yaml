@@ -20,8 +20,7 @@ metadata:
 spec:
    sourcePVC: mc-school-v1
    trigger:
-      #schedule: "30 07 * * *"
-      manual: test-id-3
+      schedule: "30 07 * * *"
    restic:
      pruneIntervalDays: 15
      repository: restic-mc-school
