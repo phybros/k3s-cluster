@@ -24,6 +24,7 @@ spec:
    restic:
      pruneIntervalDays: 15
      repository: restic-mc-school
+     cacheStorageClassName: local-path
      retain:
        hourly: 1
        daily: 1
