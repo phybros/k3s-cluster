@@ -20,7 +20,8 @@ metadata:
 spec:
    sourcePVC: sonarr-config-v1
    trigger:
-      schedule: "35 07 * * *"
+      #schedule: "35 07 * * *"
+      manual: test-1
    restic:
      pruneIntervalDays: 15
      repository: restic-sonarr
