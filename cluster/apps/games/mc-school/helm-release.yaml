@@ -39,6 +39,18 @@ spec:
       serviceType: LoadBalancer
       ops: "phybros,gimgam5000"
       loadBalancerIP: "${SVC_MC_SADDR}"
+      extraPorts:
+        - name: servertap
+          containerPort: 4567
+          protocol: TCP
+          service:
+            enabled: true
+            embedded: false
+            port: 4567
+            type: LoadBalancer
+            loadBalancerIP: "${SVC_MC_SADDR}"
+          ingress:
+            enabled: false
       rcon:
         enabled: true
         port: 25575
