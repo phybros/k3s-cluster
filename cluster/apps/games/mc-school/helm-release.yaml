@@ -28,7 +28,6 @@ spec:
       version: "1.20.4"
       pvp: "default"
       gameMode: survival
-      vanillaTweaksShareCodes: ["vy9HLm"]
       overrideServerProperties: true
       viewDistance: 10
       spawnProtection: 4
