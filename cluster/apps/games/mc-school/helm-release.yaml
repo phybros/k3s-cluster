@@ -32,6 +32,7 @@ spec:
       overrideServerProperties: true
       viewDistance: 10
       spawnProtection: 4
+      enableCommandBlock: true
       icon: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c1/Potato_JE3_BE2.png"
       difficulty: "hard"
       motd: "\u00a7f\u00a7l-SCHOOL SMP-\u00a72 birds are cool"
