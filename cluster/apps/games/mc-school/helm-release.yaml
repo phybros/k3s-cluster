@@ -39,6 +39,7 @@ spec:
       serviceType: LoadBalancer
       ops: "phybros,gimgam5000"
       loadBalancerIP: "${SVC_MC_SADDR}"
+      externalTrafficPolicy: Local
       extraPorts:
         - name: servertap
           containerPort: 4567
