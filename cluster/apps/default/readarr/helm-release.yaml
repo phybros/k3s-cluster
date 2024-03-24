@@ -61,13 +61,13 @@ spec:
                 enabled: false
     service:
       app:
+        controller: readarr
         ports:
           http:
             port: *port
 
     ingress:
       readarr:
-        enabled: true
         className: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
@@ -80,7 +80,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
