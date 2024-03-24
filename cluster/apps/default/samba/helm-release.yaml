@@ -43,13 +43,6 @@ spec:
                 guestok: no
                 comment: "Printer scans"
                 veto: yes
-              - name: files
-                path: /files
-                browsable: yes
-                readonly: no
-                guestok: no
-                comment: "Other Files"
-                veto: yes
 
     podSecurityContext:
       supplementalGroups:

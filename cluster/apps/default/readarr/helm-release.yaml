@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
       chart: app-template
-      version: 2.6.0
+      version: 3.0.4
       sourceRef:
         kind: HelmRepository
         name: bjw-s-helm-charts
@@ -28,12 +28,12 @@ spec:
     keepHistory: false
   values:
     controllers:
-      main:
+      readarr:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          main:
+          app:
             env:
               TZ: America/New_York
               READARR__INSTANCE_NAME: Readarr
@@ -60,13 +60,13 @@ spec:
               startup:
                 enabled: false
     service:
-      main:
+      app:
         ports:
           http:
             port: *port
 
     ingress:
-      main:
+      readarr:
         enabled: true
         className: "traefik"
         annotations:
