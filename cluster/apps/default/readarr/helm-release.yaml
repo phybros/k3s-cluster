@@ -59,6 +59,7 @@ spec:
               readiness: *probes
               startup:
                 enabled: false
+
     service:
       app:
         controller: readarr
@@ -87,6 +88,7 @@ spec:
               - "readarr.${SECRET_DOMAIN}"
             secretName: "readarr-tls"
     defaultPodOptions:
+      enableServiceLinks: true
       securityContext:
         runAsUser: 568
         runAsGroup: 568
