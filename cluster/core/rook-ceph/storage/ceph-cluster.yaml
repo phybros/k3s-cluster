@@ -18,7 +18,7 @@ metadata:
   namespace: rook-ceph
 spec:
   cephVersion:
-    image: quay.io/ceph/ceph:v18.2.1
+    image: quay.io/ceph/ceph:v18.2.2
     allowUnsupported: false
   dataDirHostPath: /var/lib/rook
   skipUpgradeChecks: true
