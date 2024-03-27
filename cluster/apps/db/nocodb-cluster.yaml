@@ -12,7 +12,7 @@ spec:
       owner: nocodb
   storage:
     storageClass: local-path
-    size: 2Gi
+    size: 1Gi
   monitoring:
     enablePodMonitor: true
   backup:
