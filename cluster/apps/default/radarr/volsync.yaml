@@ -20,9 +20,9 @@ metadata:
 spec:
    sourcePVC: radarr-config-v1
    trigger:
-      schedule: "40 07 * * *"
+      schedule: "37 07 * * *"
    restic:
-     pruneIntervalDays: 15
+     pruneIntervalDays: 7
      repository: restic-radarr
      cacheStorageClassName: local-path
      retain:

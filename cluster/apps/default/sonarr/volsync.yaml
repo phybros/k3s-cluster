@@ -22,7 +22,7 @@ spec:
    trigger:
       schedule: "35 07 * * *"
    restic:
-     pruneIntervalDays: 15
+     pruneIntervalDays: 7
      repository: restic-sonarr
      cacheStorageClassName: local-path
      retain:

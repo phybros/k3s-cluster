@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Secret
 metadata:
-   name: restic-mc-school
-   namespace: games
+   name: restic-sabnzbd
+   namespace: default
 type: Opaque
 stringData:
-   RESTIC_REPOSITORY: "${SECRET_RESTIC_REPO}/mc-school"
+   RESTIC_REPOSITORY: "${SECRET_RESTIC_REPO}/sabnzbd"
    RESTIC_PASSWORD: ${SECRET_RESTIC_PASSWORD}
    AWS_ACCESS_KEY_ID: ${SECRET_RESTIC_AWS_ACCESS_KEY_ID}
    AWS_SECRET_ACCESS_KEY: ${SECRET_RESTIC_AWS_SECRET_ACCESS_KEY}
@@ -15,15 +15,15 @@ stringData:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-   name: replication-source-mc-school
-   namespace: games
+   name: sabnzbd
+   namespace: default
 spec:
-   sourcePVC: mc-school-v1
+   sourcePVC: sabnzbd-config-v1
    trigger:
-      schedule: "30 07 * * *"
+      schedule: "36 07 * * *"
    restic:
      pruneIntervalDays: 7
-     repository: restic-mc-school
+     repository: restic-sabnzbd
      cacheStorageClassName: local-path
      retain:
        hourly: 1
