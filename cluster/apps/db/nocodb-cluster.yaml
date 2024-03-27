@@ -2,24 +2,22 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: my-test-pg-cluster
-  namespace: data
+  name: nocodb
+  namespace: db
 spec:
   instances: 2
   bootstrap:
     initdb:
-      database: test
-      owner: test
-  enableSuperuserAccess: true  # Required for creating extensions
+      database: nocodb
+      owner: nocodb
   storage:
-    storageClass: rook-ceph-block
-    size: 5Gi
+    size: 1Gi
   monitoring:
     enablePodMonitor: true
 
   backup:
     barmanObjectStore:
-      destinationPath: "s3://24mc-cnpg-backups/test"
+      destinationPath: "s3://24mc-cnpg-backups/nocodb"
       s3Credentials:
         accessKeyId:
           name: aws-creds
@@ -34,7 +32,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Backup
 metadata:
   name: backup-example
-  namespace: data
+  namespace: db
 spec:
   cluster:
-    name: my-test-pg-cluster
+    name: nocodb
