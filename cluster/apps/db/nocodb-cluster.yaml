@@ -12,10 +12,9 @@ spec:
       owner: nocodb
   storage:
     storageClass: local-path
-    size: 1Gi
+    size: 2Gi
   monitoring:
     enablePodMonitor: true
-
   backup:
     barmanObjectStore:
       destinationPath: "s3://24mc-cnpg-backups/nocodb"
