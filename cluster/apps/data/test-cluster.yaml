@@ -27,3 +27,13 @@ spec:
         secretAccessKey:
           name: aws-creds
           key: ACCESS_SECRET_KEY
+
+# test, remove later
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: backup-example
+spec:
+  cluster:
+    name: my-test-pg-cluster
