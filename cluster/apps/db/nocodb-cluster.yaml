@@ -11,6 +11,7 @@ spec:
       database: nocodb
       owner: nocodb
   storage:
+    storageClass: rook-ceph-block
     size: 1Gi
   monitoring:
     enablePodMonitor: true
