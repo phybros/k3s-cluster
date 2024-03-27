@@ -26,13 +26,13 @@ spec:
           name: aws-creds
           key: ACCESS_SECRET_KEY
 
-# test, remove later
----
-apiVersion: postgresql.cnpg.io/v1
-kind: Backup
-metadata:
-  name: backup-example
-  namespace: db
-spec:
-  cluster:
-    name: nocodb
+# # test, remove later
+# ---
+# apiVersion: postgresql.cnpg.io/v1
+# kind: Backup
+# metadata:
+#   name: backup-example
+#   namespace: db
+# spec:
+#   cluster:
+#     name: nocodb
