@@ -16,3 +16,14 @@ spec:
     size: 5Gi
   monitoring:
     enablePodMonitor: true
+
+  backup:
+    barmanObjectStore:
+      destinationPath: "s3://24mc-cnpg-backups/test"
+      s3Credentials:
+        accessKeyId:
+          name: aws-creds
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: aws-creds
+          key: ACCESS_SECRET_KEY
