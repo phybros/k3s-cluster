@@ -12,3 +12,4 @@ resources:
   - homepage
   - readarr
   - paperless-ngx
+  - nocodb
