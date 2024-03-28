@@ -31,12 +31,12 @@ spec:
           key: ACCESS_SECRET_KEY
 
 # # test, remove later
-# ---
-# apiVersion: postgresql.cnpg.io/v1
-# kind: Backup
-# metadata:
-#   name: nocodb
-#   namespace: db
-# spec:
-#   cluster:
-#     name: nocodb
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: nocodb
+  namespace: db
+spec:
+  cluster:
+    name: nocodb
