@@ -44,7 +44,7 @@ spec:
         controller: nocodb
         ports:
           http:
-            port: *port
+            port: 8080
 
     ingress:
       nocodb:
