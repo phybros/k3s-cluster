@@ -40,3 +40,14 @@ spec:
 # spec:
 #   cluster:
 #     name: nocodb
+
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: nocodb-scheduled
+spec:
+  schedule: "0 20 7 * * *"
+  backupOwnerReference: self
+  cluster:
+    name: nocodb
