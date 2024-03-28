@@ -16,10 +16,12 @@ spec:
   monitoring:
     enablePodMonitor: true
   backup:
+    retentionPolicy: "2w"
     barmanObjectStore:
-      destinationPath: "s3://24mc-cnpg-backups/nocodb"
+      destinationPath: "s3://24mc-cnpg-backups"
       wal:
         compression: gzip
+        maxParallel: 8
       s3Credentials:
         accessKeyId:
           name: aws-creds
