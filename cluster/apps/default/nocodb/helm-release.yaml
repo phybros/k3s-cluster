@@ -35,7 +35,7 @@ spec:
             env:
               TZ: America/New_York
               NC_AUTH_JWT_SECRET: ${SECRET_NOCODB_JWT}
-              NC_DB: "pg://nocodb-rw.db:5432?u=nocodb&p=${SECRET_NOCODB_DB_PASSWORD}&d=d1"
+              NC_DB: "pg://nocodb-rw.db:5432?u=nocodb&p=${SECRET_NOCODB_DB_PASSWORD}&d=nocodb"
             image:
               repository: nocodb/nocodb
               tag: 0.204.9
