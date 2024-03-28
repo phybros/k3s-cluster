@@ -18,6 +18,8 @@ spec:
   backup:
     barmanObjectStore:
       destinationPath: "s3://24mc-cnpg-backups/nocodb"
+      wal:
+        compression: gzip
       s3Credentials:
         accessKeyId:
           name: aws-creds
