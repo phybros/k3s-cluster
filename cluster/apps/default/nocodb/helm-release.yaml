@@ -38,7 +38,7 @@ spec:
               NC_DB: "pg://nocodb-rw.db:5432?u=nocodb&p=${SECRET_NOCODB_DB_PASSWORD}&d=nocodb"
             image:
               repository: nocodb/nocodb
-              tag: 0.204.9
+              tag: 0.205.1
     service:
       app:
         controller: nocodb
