@@ -47,9 +47,11 @@ spec:
                 path: /share2
                 browsable: yes
                 readonly: no
-                guestok: no
+                writeable: yes
+                guestok: yes
                 comment: "Duck Pond Share"
                 veto: yes
+                "vfs objects = fruit streams_xattr"
 
     podSecurityContext:
       supplementalGroups:
