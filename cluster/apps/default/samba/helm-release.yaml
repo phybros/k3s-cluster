@@ -35,6 +35,8 @@ spec:
               - "force group = scans"
               - "create mask = 0644"
               - "directory mask = 0755"
+              - "disable netbios = No"
+              - "server string = DUCK"
             share:
               - name: Scans
                 path: /share1
@@ -49,9 +51,8 @@ spec:
                 readonly: no
                 writeable: yes
                 guestok: yes
-                comment: "Duck Pond Share"
+                comment: "Duck Pond"
                 veto: yes
-                "vfs objects = fruit streams_xattr"
 
     podSecurityContext:
       supplementalGroups:
