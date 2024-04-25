@@ -46,7 +46,7 @@ spec:
                 readonly: no
                 guestok: no
                 comment: "Printer scans"
-                veto: yes
+                veto: no
               - name: duckpond
                 path: /share2
                 browsable: yes
@@ -54,7 +54,15 @@ spec:
                 writeable: yes
                 guestok: yes
                 comment: "Duck Pond"
-                veto: yes
+                veto: no
+              - name: rando
+                path: /testfiles
+                browsable: yes
+                readonly: no
+                writeable: yes
+                guestok: yes
+                comment: "Duck Pond Test"
+                veto: no
 
     podSecurityContext:
       supplementalGroups:
