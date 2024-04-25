@@ -43,6 +43,13 @@ spec:
                 guestok: no
                 comment: "Printer scans"
                 veto: yes
+              - name: duckpond
+                path: /share2
+                browsable: yes
+                readonly: no
+                guestok: no
+                comment: "Duck Pond Share"
+                veto: yes
 
     podSecurityContext:
       supplementalGroups:
@@ -70,6 +77,13 @@ spec:
           nfs:
             server: "${NAS_ADDR}"
             path: "/mergerfs/storage/scans"
+      share2:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${SAFE_NAS_ADDR}"
+            path: "/duckpond/files"
 
     resources:
       requests:
