@@ -37,6 +37,8 @@ spec:
               - "directory mask = 0755"
               - "disable netbios = No"
               - "server string = DUCK"
+              - "ea support = yes"
+              - "min protocol = SMB2"
             share:
               - name: Scans
                 path: /share1
@@ -93,5 +95,5 @@ spec:
         cpu: 50m
         memory: 64Mi
       limits:
-        cpu: 100m
+        cpu: 250m
         memory: 128Mi
