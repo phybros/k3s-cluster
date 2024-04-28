@@ -43,7 +43,7 @@ spec:
             
             image:
               repository: ghcr.io/onedr0p/readarr-develop
-              tag: 0.3.23.2506
+              tag: 0.3.24.2510
             probes:
               liveness: &probes
                 enabled: true
