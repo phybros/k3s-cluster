@@ -8,39 +8,45 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: ../../../../charts/kah-common/
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
+      chart: app-template
+      version: 3.1.0
       sourceRef:
-        kind: GitRepository
-        name: flux-system
+        kind: HelmRepository
+        name: bjw-s-helm-charts
         namespace: flux-system
-      interval: 5m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
-    image:
-      repository: nginx
-      tag: "1.26"
-    nameOverride: nginx
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: "homepage-contents"
-    persistence:
-      homepage:
-        enabled: true
-        type: custom
-        volumeSpec:
-          configMap:
-            name: "homepage-contents"
-        subPath: homepage.html
-        mountPath: /usr/share/nginx/html/index.html
+    controllers:
+      nocodb:
+        containers:
+          app:
+            env:
+              TZ: America/New_York
+            image:
+              repository: nginx/nginx
+              tag: 1.26.0
     service:
-      main:
-        enabled: true
+      app:
+        controller: homepage
         ports:
           http:
             enabled: true
             port: 80
+
     ingress:
-      main:
-        enabled: true
-        ingressClassName: "traefik"
+      homepage:
+        className: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -51,7 +57,20 @@ spec:
             paths:
               - path: /
                 pathType: Exact
+                service:
+                  identifier: app
+                  port: http
         tls:
           - hosts:
               - "${SECRET_DOMAIN}"
             secretName: "homepage-tls"
+    persistence:
+      homepage:
+        enabled: true
+        type: custom
+        volumeSpec:
+          configMap:
+            name: "homepage-contents"
+        subPath: homepage.html
+        globalMounts:
+          - path: "/usr/share/nginx/html/index.html"
