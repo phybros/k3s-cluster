@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
       chart: app-template
-      version: 2.6.0
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-helm-charts
@@ -35,12 +35,12 @@ spec:
           - 3000
 
     controllers:
-      main:
+      radarr:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          main:
+          radarr:
             env:
               TZ: "America/New_York"
               RADARR__INSTANCE_NAME: Radarr
@@ -68,7 +68,8 @@ spec:
                 enabled: false
 
     service:
-      main:
+      app:
+        controller: radarr
         ports:
           http:
             port: *port
@@ -87,8 +88,7 @@ spec:
           unknownQueueItems: false
 
     ingress:
-      main:
-        enabled: true
+      radarr:
         className: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
@@ -101,7 +101,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
