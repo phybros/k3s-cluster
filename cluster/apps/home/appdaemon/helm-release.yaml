@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
       chart: app-template
-      version: 2.6.0
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-helm-charts
@@ -20,9 +20,9 @@ spec:
   # See https://github.com/bjw-s/helm-charts/blob/main/charts/library/common/values.yaml
   values:
     controllers:
-      main:
+      appdaemon:
         containers:
-          main:
+          appdaemon:
             image:
               repository: docker.io/acockburn/appdaemon
               tag: 4.4.2
@@ -45,13 +45,14 @@ spec:
     # -- Configures service settings for the chart.
     # @default -- See values.yaml
     service:
-      main:
+      app:
+        controller: appdaemon
         ports:
           http:
             port: 5050
 
     ingress:
-      main:
+      appdaemon:
         enabled: true
         className: "traefik"
         annotations:
@@ -64,7 +65,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
