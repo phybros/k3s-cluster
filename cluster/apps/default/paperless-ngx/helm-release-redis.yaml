@@ -26,12 +26,16 @@ spec:
       retries: 3
   values:
     fullnameOverride: paperless-redis
-    image:
-      repository: bitnami/redis
-      tag: 7.0.11
     architecture: standalone
     auth:
       enabled: false
     master:
       persistence:
         enabled: false
+      resources:
+        requests:
+          cpu: 100m
+          memory: 64Mi
+        limits:
+          cpu: 512m
+          memory: 1024Mi
