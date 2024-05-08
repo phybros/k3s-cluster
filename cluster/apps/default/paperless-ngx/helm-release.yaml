@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: paperless-ngx
+  name: paperless
   namespace: default
 spec:
   interval: 5m
