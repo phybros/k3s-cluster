@@ -28,7 +28,7 @@ spec:
     keepHistory: false
   values:
     controllers:
-      nocodb:
+      homepage:
         containers:
           app:
             env:
