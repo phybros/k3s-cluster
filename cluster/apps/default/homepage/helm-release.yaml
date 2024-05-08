@@ -71,6 +71,6 @@ spec:
         volumeSpec:
           configMap:
             name: "homepage-contents"
-        subPath: homepage.html
         globalMounts:
           - path: "/usr/share/nginx/html/index.html"
+            subPath: homepage.html
