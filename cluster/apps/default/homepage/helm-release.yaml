@@ -35,7 +35,7 @@ spec:
               TZ: America/New_York
             image:
               repository: nginx
-              tag: 1.26.0
+              tag: 1.27.0
     service:
       app:
         controller: homepage
