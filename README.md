@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://camo.githubusercontent.com/5b298bf6b0596795602bd771c5bddbb963e83e0f/68747470733a2f2f692e696d6775722e636f6d2f7031527a586a512e706e67" align="center" width="144px" height="144px"/>
+<img src="https://raw.githubusercontent.com/phybros/k3s-cluster/main/docs/logo.png" align="center" width="144px" height="144px"/>
 
 ### My home Kubernetes cluster :sailboat:
 
@@ -12,12 +12,11 @@ _... managed with Flux and Renovate_ :robot:
 
 <div align="center">
 
-[![Discord](https://img.shields.io/discord/673534664354430999?label=discord&logo=discord&logoColor=white)](https://discord.gg/k8s-at-home)
-[![k3s](https://img.shields.io/badge/k3s-v1.24-brightgreen?logo=kubernetes&logoColor=white)](https://k3s.io/)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![discord](https://img.shields.io/discord/673534664354430999?label=discord&logo=discord&logoColor=white)](https://discord.gg/k8s-at-home)
+[![k3s](https://img.shields.io/badge/k3s-v1.25-brightgreen?logo=kubernetes&logoColor=white)](https://k3s.io/)
 [![renovate](https://img.shields.io/badge/renovate-enabled-brightgreen?logo=renovatebot&logoColor=white)](https://github.com/renovatebot/renovate)
-[![Lines of code](https://img.shields.io/tokei/lines/github/phybros/k3s-cluster?color=brightgreen&label=lines&logo=codefactor&logoColor=white)](https://github.com/phybros/k3s-cluster/graphs/contributors)
-  
+[![lines](https://tokei.rs/b1/github/phybros/k3s-cluster)](https://github.com/phybros/k3s-cluster)
+
 </div>
 
 ---
