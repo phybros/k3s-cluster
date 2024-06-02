@@ -19,11 +19,6 @@ spec:
     crds:
       enabled: true
     csi:
-      # temp: try fix slow provisioning
-      # https://discord.com/channels/673534664354430999/675009698755379220/1191845464136503316
-      provisioner:
-        image: registry.k8s.io/sig-storage/csi-provisioner:v4.0.1
-      # end temp
       kubeletDirPath: /var/lib/kubelet
       pluginTolerations:
         - operator: "Exists"
