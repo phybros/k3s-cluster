@@ -43,6 +43,10 @@ spec:
               tag: 1.1.110
     service:
       app:
+        type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: factorio-sharedip
+        loadBalancerIP: "${SVC_FACTORIO_ADDR}"
         controller: factorio
         ports:
           gametcp:
