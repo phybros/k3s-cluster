@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - cnpg
   - aws-s3-backup-secret.yaml
-  - nocodb-cluster.yaml
