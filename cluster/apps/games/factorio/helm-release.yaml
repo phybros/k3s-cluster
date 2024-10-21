@@ -48,6 +48,7 @@ spec:
         annotations:
           metallb.universe.tf/allow-shared-ip: factorio-sharedip
         loadBalancerIP: "${SVC_FACTORIO_ADDR}"
+        externalTrafficPolicy: Local
         controller: factorio
         ports:
           gametcp:
