@@ -32,7 +32,7 @@ spec:
       version: "1.19.2"
       pvp: "default"
       gameMode: survival
-      allowNether: false
+      allowNether: true
       overrideServerProperties: true
       viewDistance: 10
       spawnProtection: 4
