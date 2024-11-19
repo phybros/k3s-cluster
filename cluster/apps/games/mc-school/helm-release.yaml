@@ -25,7 +25,7 @@ spec:
     minecraftServer:
       eula: "TRUE"
       type: "PAPER"
-      version: "1.21.1"
+      version: "1.21.3"
       pvp: "default"
       gameMode: survival
       overrideServerProperties: true
