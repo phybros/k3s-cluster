@@ -24,6 +24,7 @@ spec:
         memory: 6Gi
     minecraftServer:
       levelSeed: potatocraft4
+      worldSaveName: potatocraft4
       eula: "TRUE"
       type: "PAPER"
       version: "1.21.1"
