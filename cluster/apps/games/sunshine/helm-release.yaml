@@ -37,9 +37,16 @@ spec:
           sunshine:
             env:
               TZ: "America/New_York"
+              DISPLAY_SIZEW: "1920"
+              DISPLAY_SIZEH: "1080"
+              DISPLAY_REFRESH: "60"
+              DISPLAY_DPI: "96"
+              DISPLAY_CDEPTH: "24"
+              VIDEO_PORT: "DFP"
+              PASSWD: "sunshine"
             image:
-              repository: lizardbyte/sunshine
-              tag: v2025.122.141614-ubuntu-24.04
+              repository: ghcr.io/selkies-project/nvidia-glx-desktop
+              tag: latest
     service:
       app:
         type: LoadBalancer
@@ -47,10 +54,8 @@ spec:
         externalTrafficPolicy: Local
         controller: sunshine
         ports:
-          games:
-            port: 47989
-          games2:
-            port: 47990
+          http:
+            port: 8080
 
     persistence:
       config:
