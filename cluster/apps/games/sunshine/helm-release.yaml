@@ -44,7 +44,11 @@ spec:
         loadBalancerIP: "${SVC_SUNSHINE_ADDR}"
         externalTrafficPolicy: Local
         controller: sunshine
-    
+        ports:
+          games:
+            port: 47989
+          games2:
+            port: 47990
 
     persistence:
       config:
