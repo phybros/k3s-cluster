@@ -1,0 +1,54 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: sunshine
+  namespace: games
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
+      chart: app-template
+      version: 3.6.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-helm-charts
+        namespace: flux-system
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+
+  values:
+    controllers:
+      sunshine:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          sunshine:
+            image:
+              repository: ghcr.io/games-on-whales/sunshine
+              tag: buildcache-x86
+    service:
+      app:
+        type: LoadBalancer
+        loadBalancerIP: "${SVC_SUNSHINE_ADDR}"
+        externalTrafficPolicy: Local
+        controller: sunshine
+    
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: sunshine-v1
+        globalMounts:
+          - path: /sunshine
