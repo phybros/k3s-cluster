@@ -37,7 +37,7 @@ spec:
           sunshine:
             image:
               repository: ghcr.io/games-on-whales/sunshine
-              tag: buildcache-x86
+              tag: edge
     service:
       app:
         type: LoadBalancer
