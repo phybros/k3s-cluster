@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - volsync.yaml
-  # - helm-release.yaml
+  - helm-release.yaml
