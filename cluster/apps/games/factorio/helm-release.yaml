@@ -51,8 +51,6 @@ spec:
         externalTrafficPolicy: Local
         controller: factorio
         ports:
-          gametcp:
-            port: 27015
           gameudp:
             port: 34197
             protocol: UDP
