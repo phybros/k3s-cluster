@@ -38,6 +38,7 @@ spec:
             env:
               TZ: "America/New_York"
               SAVE_NAME: factorio-24mc
+              LOAD_LATEST_SAVE: false
               BIND: "0.0.0.0"
             image:
               repository: factoriotools/factorio
