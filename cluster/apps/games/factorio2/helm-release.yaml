@@ -29,7 +29,7 @@ spec:
 
   values:
     controllers:
-      factorio:
+      factorio2:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
