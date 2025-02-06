@@ -45,7 +45,7 @@ spec:
     service:
       app:
         type: LoadBalancer
-        loadBalancerIP: "${SVC_FACTORIO_ADDR}"
+        loadBalancerIP: "${SVC_FACTORIO2_ADDR}"
         externalTrafficPolicy: Local
         controller: factorio2
         ports:
