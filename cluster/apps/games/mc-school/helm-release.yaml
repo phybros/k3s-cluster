@@ -56,7 +56,7 @@ spec:
         image: filebrowser/filebrowser
         ports:
           - containerPort: 8081 # Use a random, non-common port
-            name: file-browser-http # Descriptive name for the port
+            name: file-http # Descriptive name for the port
         # Update these volume mounts, to mount the pod's storage into this file browser plugin.
         volumeMounts:
           - mountPath: /srv # Path expected by Filebrowser
