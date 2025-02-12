@@ -61,5 +61,5 @@ spec:
             name: file-http # Descriptive name for the port
         # Update these volume mounts, to mount the pod's storage into this file browser plugin.
         volumeMounts:
-          - mountPath: /srv # Path expected by Filebrowser
+          - mountPath: /data # Path expected by Filebrowser
             name: datadir
