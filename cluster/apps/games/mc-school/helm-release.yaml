@@ -54,6 +54,8 @@ spec:
     sidecarContainers:
       - name: filebrowser
         image: filebrowser/filebrowser
+        securityContext:
+          runAsUser: 1000
         ports:
           - containerPort: 8081 # Use a random, non-common port
             name: file-http # Descriptive name for the port
