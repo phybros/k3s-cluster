@@ -46,7 +46,7 @@ spec:
               tag: v2.32.0
     service:
       main:
-        controller: main
+        controller: filebrowser
         ports:
           http:
             port: *port
