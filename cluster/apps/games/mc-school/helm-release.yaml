@@ -51,15 +51,3 @@ spec:
       dataDir:
         enabled: true
         existingClaim: mc-school-v1
-    sidecarContainers:
-      - name: filebrowser
-        image: filebrowser/filebrowser
-        securityContext:
-          runAsUser: 1000
-        ports:
-          - containerPort: 8081 # Use a random, non-common port
-            name: file-http # Descriptive name for the port
-        # Update these volume mounts, to mount the pod's storage into this file browser plugin.
-        volumeMounts:
-          - mountPath: /data # Path expected by Filebrowser
-            name: datadir
