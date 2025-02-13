@@ -30,7 +30,7 @@ spec:
   values:
     defaultPodOptions:
       nodeSelector:
-        - kubernetes.io/hostname: duck
+        kubernetes.io/hostname: duck
     controllers:
       filebrowser:
         type: statefulset
