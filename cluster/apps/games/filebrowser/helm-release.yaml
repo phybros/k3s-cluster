@@ -41,7 +41,6 @@ spec:
             env:
               TZ: "America/New_York"
               FB_DATABASE: /config/filebrowser.db
-              FB_ROOT: /data
               FB_LOG: stdout
               FB_PORT: &port 80
             image:
