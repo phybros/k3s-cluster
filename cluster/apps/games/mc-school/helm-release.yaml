@@ -23,6 +23,8 @@ spec:
       limits:
         memory: 6Gi
     minecraftServer:
+      nodeSelector:
+        - kubernetes.io/hostname: duck
       levelSeed: potatocraft4
       worldSaveName: potatocraft4
       eula: "TRUE"
