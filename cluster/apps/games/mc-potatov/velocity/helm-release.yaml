@@ -23,7 +23,7 @@ spec:
       # This can be one of "BUNGEECORD", "WATERFALL", "VELOCITY", "CUSTOM"
       type: VELOCITY
       serviceType: LoadBalancer
-      loadBalancerIP: "${SVC_MC_SADDR}"
+      loadBalancerIP: "${SVC_MC_CADDR}"
       externalTrafficPolicy: Local
       configFilePath: /server/velocity.toml
       config: |-

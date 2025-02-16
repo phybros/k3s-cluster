@@ -44,11 +44,6 @@ spec:
       ops: "phybros,gimgam5000"
       loadBalancerIP: "${SVC_MC_SADDR}"
       externalTrafficPolicy: Local
-      extraPorts:
-      rcon:
-        enabled: true
-        port: 25575
-        password: "${SECRET_MC_RCON_PASSWORD}"
     persistence:
       dataDir:
         enabled: true
