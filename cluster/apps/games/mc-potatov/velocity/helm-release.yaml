@@ -22,11 +22,10 @@ spec:
     minecraftProxy:
       # This can be one of "BUNGEECORD", "WATERFALL", "VELOCITY", "CUSTOM"
       type: VELOCITY
-      velocityVersion: 3.1.1
+      velocityVersion: 3.4.0-SNAPSHOT
       serviceType: LoadBalancer
       loadBalancerIP: "${SVC_MC_CADDR}"
       externalTrafficPolicy: Local
-      configFilePath: /data/velocity.toml
     persistence:
       dataDir:
         enabled: true
