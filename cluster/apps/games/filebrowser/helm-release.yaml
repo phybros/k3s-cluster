@@ -54,31 +54,13 @@ spec:
 
     service:
       main:
+        type: LoadBalancer
+        loadBalancerIP: "${SVC_FILEBROWSER_ADDR}"
+        externalTrafficPolicy: Local
         controller: filebrowser
         ports:
           http:
-            port: *port
-
-    ingress:
-      filebrowser:
-        className: "traefik"
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.tls: "true"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-traefik-forward-auth@kubernetescrd"
-        hosts:
-          - host: "filebrowser.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: http
-        tls:
-          - hosts:
-              - "filebrowser.${SECRET_DOMAIN}"
-            secretName: "filebrowser-tls"
+            port: *port        
     
     metrics:
       enabled: true
