@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mc-potatov-v1
+  name: mc-potatov-lobby-v1
   namespace: games
 spec:
   accessModes:
