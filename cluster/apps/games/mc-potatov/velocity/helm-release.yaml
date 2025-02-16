@@ -26,13 +26,7 @@ spec:
       serviceType: LoadBalancer
       loadBalancerIP: "${SVC_MC_CADDR}"
       externalTrafficPolicy: Local
-      configFilePath: /server/velocity.toml
-      config: |-
-        config-version = "2.7"
-        bind = "0.0.0.0:25577"
-        motd = "Hello from Velocityyyyyyy!"
-        show-max-players = 50000
-        player-info-forwarding-mode = "modern"
+      configFilePath: /data/velocity.toml
     persistence:
       dataDir:
         enabled: true
