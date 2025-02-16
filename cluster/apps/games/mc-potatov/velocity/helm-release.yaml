@@ -8,28 +8,64 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://itzg.github.io/minecraft-server-charts/
-      chart: minecraft-proxy
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
+      chart: app-template
+      version: 3.7.1
       sourceRef:
         kind: HelmRepository
-        name: minecraft-server-charts
+        name: bjw-s-helm-charts
         namespace: flux-system
-      interval: 5m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+
   values:
-    image:
-      repository: itzg/mc-proxy
-      tag: latest
-    replicaCount: 1
-    nodeSelector:
-      kubernetes.io/hostname: duck
-    minecraftProxy:
-      # This can be one of "BUNGEECORD", "WATERFALL", "VELOCITY", "CUSTOM"
-      type: VELOCITY
-      velocityVersion: 3.4.0-SNAPSHOT
-      serviceType: LoadBalancer
-      loadBalancerIP: "${SVC_MC_CADDR}"
-      externalTrafficPolicy: Local
+    controllers:
+      mc-potatov-velocity:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          mc-potatov-velocity:
+            env:
+              TZ: "America/New_York"
+            image:
+              repository: itzg/mc-proxy
+              tag: latest
+    service:
+      app:
+        type: LoadBalancer
+        loadBalancerIP: "${SVC_MC_CADDR}"
+        externalTrafficPolicy: Local
+        controller: mc-potatov-velocity
+        ports:
+          game:
+            port: 25565
+    
+    metrics:
+      enabled: true
+      serviceMonitor:
+        interval: 3m
+        scrapeTimeout: 1m
+      prometheusRule:
+        enabled: true
+      exporter:
+        env:
+          port: 9794
+          additionalMetrics: true
+          unknownQueueItems: false
+
     persistence:
-      dataDir:
+      config:
         enabled: true
         existingClaim: mc-potatov-velocity-v1
+        globalMounts:
+          - path: /server
