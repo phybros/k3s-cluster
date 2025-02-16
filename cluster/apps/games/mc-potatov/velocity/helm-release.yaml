@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://itzg.github.io/minecraft-server-charts/
-      chart: minecraft
+      chart: minecraft-proxy
       sourceRef:
         kind: HelmRepository
         name: minecraft-server-charts
