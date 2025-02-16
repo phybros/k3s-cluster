@@ -37,6 +37,8 @@ spec:
           mc-potatov-velocity:
             env:
               TZ: "America/New_York"
+              TYPE: VELOCITY
+              ICON: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c1/Potato_JE3_BE2.png"
             image:
               repository: itzg/mc-proxy
               tag: latest
