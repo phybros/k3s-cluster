@@ -98,7 +98,7 @@ spec:
         existingClaim: filebrowser-v1
       minecraftdata:
         enabled: true
-        existingClaim: mc-school-v1
+        existingClaim: mc-potatov-v1
         globalMounts:
           - path: /srv
 
