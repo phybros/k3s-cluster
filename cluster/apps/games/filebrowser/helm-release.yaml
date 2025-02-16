@@ -47,9 +47,10 @@ spec:
               FB_DATABASE: /config/filebrowser.db
               FB_LOG: stdout
               FB_PORT: &port 8080
+              FB_BASEURL: /
             image:
               repository: filebrowser/filebrowser
-              tag: v2.31.2
+              tag: v2.32.0
 
     service:
       main:
