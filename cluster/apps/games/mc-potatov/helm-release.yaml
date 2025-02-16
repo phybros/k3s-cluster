@@ -25,7 +25,7 @@ spec:
     minecraftServer:
       nodeSelector:
         kubernetes.io/hostname: duck
-      levelSeed: 501454996
+      levelSeed: "P-O-T-A-T-O-E-S"
       worldSaveName: potatocraft5
       eula: "TRUE"
       type: "PAPER"
