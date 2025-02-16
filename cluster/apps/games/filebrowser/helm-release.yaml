@@ -46,7 +46,7 @@ spec:
               TZ: "America/New_York"
               FB_DATABASE: /config/filebrowser.db
               FB_LOG: stdout
-              FB_PORT: &port 80
+              FB_PORT: &port 8080
             image:
               repository: filebrowser/filebrowser
               tag: v2.32.0
