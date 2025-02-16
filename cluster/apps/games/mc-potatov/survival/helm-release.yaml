@@ -27,6 +27,7 @@ spec:
         kubernetes.io/hostname: duck
       levelSeed: "P-O-T-A-T-O-E-S"
       worldSaveName: potatocraft5
+      onlineMode: false
       eula: "TRUE"
       type: "PAPER"
       version: "1.21.1"
@@ -40,10 +41,7 @@ spec:
       difficulty: "normal"
       motd: "\u00a7f\u00a7l-POTATOCRAFT V-\u00a72"
       memory: 5120M
-      serviceType: LoadBalancer
       ops: "phybros,gimgam5000"
-      loadBalancerIP: "${SVC_MC_SADDR}"
-      externalTrafficPolicy: Local
     persistence:
       dataDir:
         enabled: true

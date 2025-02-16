@@ -25,8 +25,8 @@ spec:
     minecraftServer:
       nodeSelector:
         kubernetes.io/hostname: duck
-      levelSeed: "P-O-T-A-T-O-E-S"
       worldSaveName: potatov-lobby
+      onlineMode: false
       levelType: FLAT
       eula: "TRUE"
       type: "PAPER"
