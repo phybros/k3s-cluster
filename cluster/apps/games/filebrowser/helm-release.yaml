@@ -49,7 +49,7 @@ spec:
               FB_PORT: &port 8080
             image:
               repository: filebrowser/filebrowser
-              tag: v2.32.0
+              tag: v2.31.2
 
     service:
       main:
