@@ -16,6 +16,9 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+      repository: itzg/mc-proxy
+      tag: latest
     replicaCount: 1
     nodeSelector:
       kubernetes.io/hostname: duck
