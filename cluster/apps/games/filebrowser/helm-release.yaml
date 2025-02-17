@@ -46,7 +46,7 @@ spec:
               TZ: "America/New_York"
               FB_DATABASE: /config/filebrowser.db
               FB_LOG: stdout
-              FB_PORT: &port 8080
+              FB_PORT: &port 8000
               FB_BASEURL: /survival
             image:
               repository: filebrowser/filebrowser
