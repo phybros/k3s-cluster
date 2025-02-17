@@ -57,6 +57,8 @@ spec:
         type: LoadBalancer
         loadBalancerIP: "${SVC_FILEBROWSER_ADDR}"
         externalTrafficPolicy: Local
+        annotations:
+          metallb.universe.tf/allow-shared-ip: fb-sharedip
         controller: filebrowser
         ports:
           http:
