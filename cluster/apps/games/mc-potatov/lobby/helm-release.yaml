@@ -24,7 +24,7 @@ spec:
         memory: 6Gi
     minecraftServer:
       nodeSelector:
-        kubernetes.io/hostname: duck
+        kubernetes.io/hostname: whale
       worldSaveName: potatov-lobby
       onlineMode: false
       levelType: FLAT

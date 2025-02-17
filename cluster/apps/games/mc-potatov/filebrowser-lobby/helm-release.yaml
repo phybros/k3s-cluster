@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: filebrowser
+  name: filebrowser-lobby
   namespace: games
 spec:
   interval: 5m
@@ -30,24 +30,24 @@ spec:
   values:
     defaultPodOptions:
       nodeSelector:
-        kubernetes.io/hostname: duck
+        kubernetes.io/hostname: whale
       securityContext:
         runAsUser: 1000
         runAsGroup: 2000
         fsGroup: 2000
     controllers:
-      filebrowser:
+      filebrowser-lobby:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          filebrowser:
+          filebrowser-lobby:
             env:
               TZ: "America/New_York"
               FB_DATABASE: /config/filebrowser.db
               FB_LOG: stdout
               FB_PORT: &port 8080
-              FB_BASEURL: /survival
+              FB_BASEURL: /lobby
             image:
               repository: filebrowser/filebrowser
               tag: v2.32.0
@@ -57,7 +57,7 @@ spec:
         type: LoadBalancer
         loadBalancerIP: "${SVC_FILEBROWSER_ADDR}"
         externalTrafficPolicy: Local
-        controller: filebrowser
+        controller: filebrowser-lobby
         ports:
           http:
             port: *port        
@@ -78,10 +78,10 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: filebrowser-v1
+        existingClaim: filebrowser-lobby-v1
       minecraftdata:
         enabled: true
-        existingClaim: mc-potatov-v1
+        existingClaim: mc-potatov-lobby-v1
         globalMounts:
           - path: /srv
 
