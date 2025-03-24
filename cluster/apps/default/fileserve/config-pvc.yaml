@@ -6,9 +6,8 @@ metadata:
   namespace: default
 spec:
   accessModes:
-    # pay attention here
-    - ReadWriteMany
-  storageClassName: ceph-filesystem
+    - ReadWriteOnce
+  storageClassName: rook-ceph-block
   resources:
     requests:
       storage: 4Gi
