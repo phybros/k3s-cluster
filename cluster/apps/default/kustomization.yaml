@@ -11,3 +11,4 @@ resources:
   - homepage
   - readarr
   - paperless-ngx
+  - fileserve

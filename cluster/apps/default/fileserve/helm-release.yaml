@@ -1,0 +1,72 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: fileserve
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
+      chart: app-template
+      version: 3.7.3
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-helm-charts
+        namespace: flux-system
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      fileserve:
+        containers:
+          app:
+            env:
+              TZ: America/New_York
+            image:
+              repository: nginx
+              tag: 1.27.4
+    service:
+      app:
+        controller: fileserve
+        ports:
+          http:
+            enabled: true
+            port: 80
+
+    ingress:
+      fileserve:
+        className: "traefik"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.tls: "true"
+          traefik.ingress.kubernetes.io/router.middlewares: "networking-traefik-forward-auth@kubernetescrd"
+        hosts:
+          - host: "${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Exact
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - "${SECRET_DOMAIN}"
+            secretName: "fileserve-tls"
+    persistence:
+      config:
+        enabled: true
+        existingClaim: fileserve-v1
+        globalMounts:
+          - path: /usr/share/nginx/html
