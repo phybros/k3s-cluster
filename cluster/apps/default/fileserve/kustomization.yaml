@@ -4,3 +4,10 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release.yaml
+configMapGenerator:
+  - name: nginx-conf
+    namespace: default
+    files:
+      - nginx.conf
+generatorOptions:
+  disableNameSuffixHash: true

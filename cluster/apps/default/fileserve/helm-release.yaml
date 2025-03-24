@@ -70,3 +70,12 @@ spec:
         existingClaim: fileserve-v1
         globalMounts:
           - path: /usr/share/nginx/html
+      nginxconf:
+        enabled: true
+        type: custom
+        volumeSpec:
+          configMap:
+            name: "nginx-conf"
+        globalMounts:
+          - path: "/etc/nginx/nginx.conf"
+            subPath: nginx.conf
