@@ -53,16 +53,16 @@ spec:
           traefik.ingress.kubernetes.io/router.tls: "true"
           traefik.ingress.kubernetes.io/router.middlewares: "networking-traefik-forward-auth@kubernetescrd"
         hosts:
-          - host: "${SECRET_DOMAIN}"
+          - host: "fileserve.${SECRET_DOMAIN}"
             paths:
               - path: /
-                pathType: Exact
+                pathType: Prefix
                 service:
                   identifier: app
                   port: http
         tls:
           - hosts:
-              - "${SECRET_DOMAIN}"
+              - "fileserve.${SECRET_DOMAIN}"
             secretName: "fileserve-tls"
     persistence:
       config:
