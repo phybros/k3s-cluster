@@ -37,7 +37,7 @@ spec:
               TZ: America/New_York
             image:
               repository: nginx
-              tag: 1.27.4
+              tag: 1.27.5
     service:
       app:
         controller: fileserve
