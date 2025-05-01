@@ -32,7 +32,7 @@ spec:
           esphome:
             image:
               repository: ghcr.io/esphome/esphome
-              tag: 2025.3.3
+              tag: 2025.4.1
             env:
               TZ: "America/New_York"
               ESPHOME_DASHBOARD_USE_PING: true
