@@ -42,7 +42,7 @@ spec:
           app:
             env:
               TZ: America/New_York
-              EXTENSIONS_GALLERY: "https://marketplace.visualstudio.com/_apis/public/gallery"
+              EXTENSIONS_GALLERY: '{"serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery","itemUrl": "https://marketplace.visualstudio.com/items"}'
             image:
               repository: ghcr.io/coder/code-server
               tag: 4.99.4@sha256:316b7f60051b44b81fdf8972293735c2b0fda9a2b1e88fb6b77195df0c9b9b78
