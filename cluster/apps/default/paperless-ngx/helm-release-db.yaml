@@ -28,7 +28,7 @@ spec:
     fullnameOverride: paperless-postgresql
     image:
       repository: bitnami/postgresql
-      tag: 15.2.0
+      tag: 17.5.0
     auth:
       database: paperless-ngx
       username: paperless-ngx
