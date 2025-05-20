@@ -36,14 +36,11 @@ spec:
         containers:
           vintagestory:
             image:
-              repository: pepecitron/vintagestory-server
-              tag: v1.20.10
+              repository: devidian/vintagestory
+              tag: latest
             env:
               TZ: "America/New_York"
-              SERVER_NAME: WARRENWORLD
-              SERVER_DESCRIPTION: "We have no idea what we're doing"
-              SERVER_MOTD: "Welcome to chaos, {0}"
-              SERVER_PUBLIC: "false"
+              VS_DATA_PATH: /gamedata
     service:
       app:
         type: LoadBalancer
@@ -51,9 +48,8 @@ spec:
         externalTrafficPolicy: Local
         controller: vintagestory
         ports:
-          gameudp:
-            port: 34197
-            protocol: UDP
+          game:
+            port: 42420
     
     metrics:
       enabled: true
@@ -73,4 +69,4 @@ spec:
         enabled: true
         existingClaim: vintagestory-v1
         globalMounts:
-          - path: /data
+          - path: /gamedata
