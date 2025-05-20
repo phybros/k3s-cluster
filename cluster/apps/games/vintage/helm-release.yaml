@@ -50,6 +50,9 @@ spec:
         ports:
           game:
             port: 42420
+          gameudp:
+            port: 42420
+            protocol: UDP
     
     metrics:
       enabled: true
