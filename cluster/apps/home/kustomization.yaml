@@ -3,6 +3,5 @@ kind: Kustomization
 resources:
   - mosquitto
   - home-assistant
-  - teslamate
   - esphome
   - appdaemon
