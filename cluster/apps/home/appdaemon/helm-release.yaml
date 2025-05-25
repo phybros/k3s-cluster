@@ -25,7 +25,7 @@ spec:
           appdaemon:
             image:
               repository: docker.io/acockburn/appdaemon
-              tag: 4.4.2
+              tag: 4.5.0
             env:
               TZ: "America/New_York"
               HA_URL: "http://192.168.86.212:8123"
