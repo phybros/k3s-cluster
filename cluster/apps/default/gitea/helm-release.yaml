@@ -86,7 +86,7 @@ spec:
         registry: docker.io
         repository: bitnami/postgresql
         tag: 9.6.24-debian-10-r44
-    redis:
-      enabled: false
-    redis-cluster:
+    valkey:
+      enabled: true
+    valkey-cluster:
       enabled: false
