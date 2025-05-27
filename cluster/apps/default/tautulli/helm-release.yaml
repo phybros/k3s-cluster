@@ -8,28 +8,80 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: tautulli
-      version: 11.4.2
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts/
+      chart: app-template
+      version: 3.7.3
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-helm-charts
         namespace: flux-system
-      interval: 5m
+
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+
   values:
-    image:
-      repository: ghcr.io/k8s-at-home/tautulli
-      tag: v2.10.5
-    env:
-      TZ: "America/New_York"
-    persistence:
-      config:
+    controllers:
+      tautulli:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          tautulli:
+            image:
+              repository: ghcr.io/home-operations/tautulli
+              tag: 2.15.2@sha256:cb8e3a4c2873edf7baa433e126f022f19eb43f256b65b2de3e8525dc2e4dc18e
+            env:
+              TZ: "America/New_York"
+              TAUTULLI__PORT: &port 80
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /status
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+
+    service:
+      app:
+        controller: tautulli
+        ports:
+          http:
+            port: *port
+
+    metrics:
+      enabled: true
+      serviceMonitor:
+        interval: 3m
+        scrapeTimeout: 1m
+      prometheusRule:
         enabled: true
-        existingClaim: tautulli-config-v1
+      exporter:
+        env:
+          port: 9794
+          additionalMetrics: true
+          unknownQueueItems: false
+
     ingress:
-      main:
-        enabled: true
-        ingressClassName: "traefik"
+      tautulli:
+        className: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -40,7 +92,15 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
         tls:
           - hosts:
               - "tautulli.${SECRET_DOMAIN}"
             secretName: "tautulli-tls"
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: tautulli-config-v1
