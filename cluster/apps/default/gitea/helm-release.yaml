@@ -89,16 +89,4 @@ spec:
     redis:
       enabled: false
     redis-cluster:
-      enabled: true
-      usePassword: false
-      cluster:
-        nodes: 3
-        replicas: 0
-      redis:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 64Mi
-          limits:
-            cpu: 512m
-            memory: 1024Mi
+      enabled: false
