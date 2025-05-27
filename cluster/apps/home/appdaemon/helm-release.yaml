@@ -29,7 +29,7 @@ spec:
             env:
               TZ: "America/New_York"
               HA_URL: "http://192.168.86.212:8123"
-              DASH_URL: "http://$HOSTNAME:5050"
+              DASH_URL: "http://0.0.0.0:5050"
               TOKEN: "${SECRET_APPDAEMON_TOKEN}"
               LATITUDE: "${SECRET_LAT}"
               LONGITUDE: "${SECRET_LNG}"
