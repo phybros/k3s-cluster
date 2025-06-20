@@ -7,12 +7,12 @@ metadata:
 spec:
   interval: 5m
   chart:
-  spec:
-    interval: 1h
-    chartRef:
-      kind: OCIRepository
-      name: app-template
-      namespace: flux-system
+    spec:
+      interval: 1h
+      chartRef:
+        kind: OCIRepository
+        name: app-template
+        namespace: flux-system
   maxHistory: 3
   install:
     createNamespace: true
