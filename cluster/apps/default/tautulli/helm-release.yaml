@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: oci://ghcr.io/bjw-s/helm/
       chart: app-template
-      version: 3.7.3
+      version: 4.1.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s-helm-charts
