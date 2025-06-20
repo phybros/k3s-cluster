@@ -5,14 +5,11 @@ metadata:
   name: tautulli
   namespace: default
 spec:
-  interval: 5m
-  chart:
-    spec:
-      interval: 1h
-      chartRef:
-        kind: OCIRepository
-        name: app-template
-        namespace: flux-system
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+    namespace: flux-system
   maxHistory: 3
   install:
     createNamespace: true
