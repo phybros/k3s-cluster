@@ -50,7 +50,7 @@ spec:
               FB_BASEURL: /lobby
             image:
               repository: filebrowser/filebrowser
-              tag: v2.33.0
+              tag: v2.33.4
 
     service:
       main:
