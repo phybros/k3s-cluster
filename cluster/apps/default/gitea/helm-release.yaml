@@ -86,7 +86,15 @@ spec:
         registry: docker.io
         repository: bitnami/postgresql
         tag: 9.6.24-debian-10-r44
-    valkey:
-      enabled: true
     valkey-cluster:
       enabled: false
+    valkey:
+      enabled: true
+      global:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 64Mi
+          limits:
+            cpu: 1000m
+            memory: 512Mi
