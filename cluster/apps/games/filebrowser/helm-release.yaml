@@ -50,7 +50,7 @@ spec:
               FB_BASEURL: /survival
             image:
               repository: filebrowser/filebrowser
-              tag: v2.33.6
+              tag: v2.36.1
 
     service:
       main:
