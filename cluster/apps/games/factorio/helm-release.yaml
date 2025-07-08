@@ -5,16 +5,11 @@ metadata:
   name: factorio
   namespace: games
 spec:
-  interval: 5m
-  chart:
-    spec:
-      # renovate: oci://ghcr.io/bjw-s/helm/
-      chart: app-template
-      version: 3.7.3
-      sourceRef:
-        kind: HelmRepository
-        name: bjw-s-helm-charts
-        namespace: flux-system
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+    namespace: flux-system
   maxHistory: 3
   install:
     createNamespace: true
