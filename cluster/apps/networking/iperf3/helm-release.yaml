@@ -35,6 +35,8 @@ spec:
             image:
               repository: networkstatic/iperf3
               tag: latest
+            args:
+              - -s
     service:
       app:
         type: LoadBalancer
