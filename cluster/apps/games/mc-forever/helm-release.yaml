@@ -44,3 +44,13 @@ spec:
       dataDir:
         enabled: true
         existingClaim: mc-forever-v1
+    extraPorts:
+      - name: map
+        containerPort: 8100
+        service:
+          enabled: true
+          type: LoadBalancer
+          loadBalancerIP: "${SVC_MC_FOREVER_MAP_ADDR}" 
+          port: 8100
+          ingress:
+            enabled: false
