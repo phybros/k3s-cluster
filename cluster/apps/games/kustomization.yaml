@@ -14,3 +14,4 @@ resources:
   - filebrowser
   - code-server
   - vintage
+  - mc-forever
