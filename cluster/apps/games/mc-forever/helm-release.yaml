@@ -40,17 +40,19 @@ spec:
         enabled: true
         port: 25575
         password: "${SECRET_MC_RCON_PASSWORD}"
+
+      extraPorts:
+        - name: map
+          containerPort: 8100
+          protocol: TCP
+          service:
+            enabled: true
+            type: LoadBalancer
+            loadBalancerIP: "${SVC_MC_FOREVER_MAP_ADDR}" 
+            port: 8100
+            ingress:
+             enabled: false
     persistence:
       dataDir:
         enabled: true
         existingClaim: mc-forever-v1
-    extraPorts:
-      - name: map
-        containerPort: 8100
-        service:
-          enabled: true
-          type: LoadBalancer
-          loadBalancerIP: "${SVC_MC_FOREVER_MAP_ADDR}" 
-          port: 8100
-          ingress:
-            enabled: false
