@@ -26,13 +26,11 @@ spec:
       eula: "TRUE"
       type: "PAPER"
       version: "1.21.8"
-      pvp: "true"
       gameMode: survival
       levelSeed: "foreverforever"
       overrideServerProperties: true
       whitelist: "phybros,gimgam5000"
       viewDistance: 10
-      spawnProtection: "0"
       difficulty: "normal"
       motd: "Hello!"
       memory: 5120M
