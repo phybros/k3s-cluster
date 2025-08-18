@@ -29,6 +29,7 @@ spec:
       gameMode: survival
       levelSeed: "foreverforever"
       overrideServerProperties: true
+      maxPlayers: 2
       whitelist: "phybros,gimgam5000"
       viewDistance: 10
       difficulty: "normal"
@@ -36,11 +37,6 @@ spec:
       memory: 5120M
       serviceType: LoadBalancer
       loadBalancerIP: "${SVC_MC_FOREVER_ADDR}"
-      rcon:
-        enabled: true
-        port: 25575
-        password: "${SECRET_MC_RCON_PASSWORD}"
-
       extraPorts:
         - name: map
           containerPort: 8100
