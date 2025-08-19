@@ -34,6 +34,7 @@ spec:
       ops: "phybros"
       viewDistance: 10
       difficulty: "normal"
+      icon: "https://minecraft.wiki/images/Creeper_Head_%28S%29_JE1.png"
       motd: "Hello!"
       memory: 5120M
       serviceType: LoadBalancer
