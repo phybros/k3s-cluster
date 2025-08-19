@@ -31,6 +31,7 @@ spec:
       overrideServerProperties: true
       maxPlayers: 2
       whitelist: "phybros,gimgam5000"
+      ops: "phybros"
       viewDistance: 10
       difficulty: "normal"
       motd: "Hello!"
