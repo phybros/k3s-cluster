@@ -47,8 +47,9 @@ spec:
             resources:
               requests:
                 cpu: 200m
+                gpu.intel.com/i915: 1
               limits:
-                memory: 16Gi
+                memory: 10Gi
                 gpu.intel.com/i915: 1
         pod:
           affinity:
@@ -73,7 +74,3 @@ spec:
           - path: *modelPath
             subPath: models
           - path: /root/.ollama
-            subPath: config
-      dri:
-        type: hostPath
-        hostPath: /dev/dri
