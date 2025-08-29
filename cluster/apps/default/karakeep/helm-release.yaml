@@ -1,0 +1,168 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: karakeep
+  namespace: default
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+    namespace: flux-system
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      karakeep:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/karakeep-app/karakeep
+              tag: 0.26.0
+            env:
+              BROWSER_WEB_URL: http://karakeep-chrome.default.svc.cluster.local:9222
+              CRAWLER_DOWNLOAD_BANNER_IMAGE: true
+              CRAWLER_ENABLE_ADBLOCKER: true
+              CRAWLER_STORE_SCREENSHOT: true
+              DISABLE_SIGNUPS: true
+              DATA_DIR: /data
+              MEILI_ADDR: http://karakeep-meilisearch.default.svc.cluster.local:7700
+              DISABLE_NEW_RELEASE_CHECK: true
+              COREPACK_INTEGRITY_KEYS: 0
+              DISABLE_PASSWORD_AUTH: false
+              INFERENCE_TEXT_MODEL: gemini-2.0-flash
+              INFERENCE_IMAGE_MODEL: gemini-2.0-flash
+              NEXTAUTH_URL: https://karakeep.${SECRET_DOMAIN}
+              NEXTAUTH_SECRET: ${SECRET_NEXTAUTH}
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 1Gi
+      chrome:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: gcr.io/zenika-hub/alpine-chrome
+              tag: 124
+            command:
+              - chromium-browser
+            args:
+              - --headless
+              - --no-sandbox
+              - --disable-gpu
+              - --disable-dev-shm-usage
+              - --remote-debugging-address=0.0.0.0
+              - --remote-debugging-port=9222
+              - --hide-scrollbars
+            securityContext:
+              capabilities:
+                drop:
+                  - ALL
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 1Gi
+
+      meilisearch:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - karakeep
+                  topologyKey: kubernetes.io/hostname
+        containers:
+          app:
+            image:
+              repository: docker.io/getmeili/meilisearch
+              tag: v1.19.1
+            args:
+              - /bin/meilisearch
+              - --experimental-dumpless-upgrade
+            env:
+              MEILI_NO_ANALYTICS: true
+              MEILI_MASTER_KEY: ${SECRET_MEILI}
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 2Gi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+
+
+
+    ingress:
+      radarr:
+        className: "traefik"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.tls: "true"
+          traefik.ingress.kubernetes.io/router.middlewares: "networking-traefik-forward-auth@kubernetescrd"
+        hosts:
+          - host: "karakeep.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - "karakeep.${SECRET_DOMAIN}"
+            secretName: "karakeep-tls"
+    persistence:
+      data:
+        existingClaim: karakeep-config-v1
+        advancedMounts:
+          karakeep:
+            app:
+              - path: /data
+                subPath: karakeep
+          meilisearch:
+            app:
+              - path: /meili_data
+                subPath: meilisearch
+    service:
+      app:
+        controller: karakeep
+        ports:
+          http:
+            port: 3000
+      chrome:
+        controller: chrome
+        ports:
+          http:
+            port: 9222
+      meilisearch:
+        controller: meilisearch
+        ports:
+          http:
+            port: 7700
