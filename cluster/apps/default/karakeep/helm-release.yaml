@@ -30,15 +30,16 @@ spec:
               CRAWLER_DOWNLOAD_BANNER_IMAGE: true
               CRAWLER_ENABLE_ADBLOCKER: true
               CRAWLER_STORE_SCREENSHOT: true
+              DISABLE_PASSWORD_AUTH: false
               DISABLE_SIGNUPS: true
               DATA_DIR: /data
               MEILI_ADDR: http://karakeep-meilisearch.default.svc.cluster.local:7700
               MEILI_MASTER_KEY: ${SECRET_MEILI}
               DISABLE_NEW_RELEASE_CHECK: true
               COREPACK_INTEGRITY_KEYS: 0
-              DISABLE_PASSWORD_AUTH: false
-              INFERENCE_TEXT_MODEL: gemini-2.0-flash
-              INFERENCE_IMAGE_MODEL: gemini-2.0-flash
+              OLLAMA_BASE_URL: http://ollama.default.svc.cluster:11434
+              INFERENCE_TEXT_MODEL: llama3.1:8b
+              INFERENCE_IMAGE_MODEL: llama3.1:8b
               NEXTAUTH_URL: https://karakeep.${SECRET_DOMAIN}
               NEXTAUTH_SECRET: ${SECRET_NEXTAUTH}
             probes:
