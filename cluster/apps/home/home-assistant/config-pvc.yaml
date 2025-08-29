@@ -3,10 +3,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: home-assistant-config-v1
   namespace: home
-  annotations:
-    benji-backup.me/fsfreeze: "yes"
-  labels:
-    backup-this-pvc: "yes"
 spec:
   accessModes:
     - ReadWriteOnce

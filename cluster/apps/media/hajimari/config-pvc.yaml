@@ -4,10 +4,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: hajimari-config-v2
   namespace: media
-  annotations:
-    benji-backup.me/fsfreeze: "yes"
-  labels:
-    backup-this-pvc: "yes"
 spec:
   accessModes:
     - ReadWriteOnce
