@@ -41,6 +41,8 @@ spec:
               OLLAMA_KEEP_ALIVE: "-1m"
               INFERENCE_TEXT_MODEL: gemma3:4b
               INFERENCE_IMAGE_MODEL: llava
+              INFERENCE_JOB_TIMEOUT: 120
+              INFERENCE_CONTEXT_LENGTH: 512
               NEXTAUTH_URL: https://karakeep.${SECRET_DOMAIN}
               NEXTAUTH_SECRET: ${SECRET_NEXTAUTH}
             probes:
