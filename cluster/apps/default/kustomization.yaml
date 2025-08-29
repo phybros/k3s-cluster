@@ -13,3 +13,4 @@ resources:
   - paperless-ngx
   - fileserve
   - karakeep
+  - ollama
