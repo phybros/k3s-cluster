@@ -11,20 +11,3 @@ spec:
   resources:
     requests:
       storage: 4Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: radarr-restore-testing1
-  namespace: default
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: rook-ceph-block
-  resources:
-    requests:
-      storage: 4Gi
-  dataSourceRef:
-    kind: ReplicationSource
-    apiGroup: volsync.backube
-    name: radarr
