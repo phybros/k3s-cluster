@@ -20,11 +20,11 @@ spec:
     image:
       repository: gitea
       tag: 1.23.7
-    service:
-      ssh:
-        type: LoadBalancer
-        port: 22
-        loadBalancerIP: "${SVC_GITEA_SSH_ADDR}"
+    # service:
+    #   ssh:
+    #     type: LoadBalancer
+    #     port: 22
+    #     loadBalancerIP: "${SVC_GITEA_SSH_ADDR}"
     ingress:
       enabled: true
       className: "traefik"
