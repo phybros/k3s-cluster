@@ -37,7 +37,7 @@ spec:
               BIND: "0.0.0.0"
             image:
               repository: factoriotools/factorio
-              tag: stable-2.0.60
+              tag: stable-2.0.66
     service:
       app:
         type: LoadBalancer
@@ -48,7 +48,7 @@ spec:
           gameudp:
             port: 34197
             protocol: UDP
-    
+
     metrics:
       enabled: true
       serviceMonitor:
