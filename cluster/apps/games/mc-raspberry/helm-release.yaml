@@ -30,6 +30,7 @@ spec:
       worldSaveName: raspberry
       gameMode: survival
       allowNether: true
+      difficulty: normal
       overrideServerProperties: true
       viewDistance: 16
       seed: "kjhblkjhbkljgh23444444444jnjh"
