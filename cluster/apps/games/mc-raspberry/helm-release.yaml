@@ -29,7 +29,9 @@ spec:
         apiKey:
           key: ${SECRET_CURSEFORGE_API_KEY}
         slug: "raspberry-flavoured"
+        fileId: "6559143"
       version: "1.19.2"
+
       pvp: "default"
       gameMode: survival
       allowNether: true
