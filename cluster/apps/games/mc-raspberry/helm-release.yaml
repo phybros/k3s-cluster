@@ -25,7 +25,6 @@ spec:
     minecraftServer:
       eula: "TRUE"
       type: "FORGE"
-      downloadModpackUrl: "https://asphodel.cc/resources/cf/Raspberry-Flavoured-3.0.2-Server-Pack.zip"
       version: "1.19.2"
       pvp: "default"
       gameMode: survival
