@@ -24,11 +24,9 @@ spec:
         memory: 6Gi
     minecraftServer:
       eula: "TRUE"
-      type: "AUTO_CURSEFORGE"
-      autoCurseForge:
-        apiKey:
-          key: ${SECRET_CURSEFORGE_API_KEY}
-        pageUrl: "https://www.curseforge.com/minecraft/modpacks/raspberry-flavoured"
+      type: "FORGE"
+      downloadModpackUrl: "https://asphodel.cc/resources/cf/Raspberry-Flavoured-3.0.2-Server-Pack.zip"
+      forgeVersion: "1.19.2"
       pvp: "default"
       gameMode: survival
       allowNether: true
