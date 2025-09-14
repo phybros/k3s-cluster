@@ -1,0 +1,54 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mc-raspberry
+  namespace: games
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://itzg.github.io/minecraft-server-charts/
+      chart: minecraft
+      sourceRef:
+        kind: HelmRepository
+        name: minecraft-server-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    replicaCount: 0
+    resources:
+      requests:
+        memory: 2Gi
+      limits:
+        memory: 6Gi
+    minecraftServer:
+      eula: "TRUE"
+      type: "AUTO_CURSEFORGE"
+      autoCurseForge:
+        apiKey:
+          key: ${SECRET_CURSEFORGE_API_KEY}
+        slug: "raspberry-flavoured"
+      version: "1.19.2"
+      pvp: "default"
+      gameMode: survival
+      allowNether: true
+      overrideServerProperties: true
+      viewDistance: 10
+      spawnProtection: 4
+      enableCommandBlock: true
+      icon: "https://cdn-icons-png.freepik.com/512/12777/12777015.png"
+      motd: "raspberry flavoured"
+      memory: 5120M
+      serviceType: LoadBalancer
+      ops: "phybros,gimgam5000"
+      loadBalancerIP: "${SVC_MC_RADDR}"
+      externalTrafficPolicy: Local
+      rcon:
+        enabled: true
+        port: 25575
+        password: "${SECRET_MC_RCON_PASSWORD}"
+    persistence:
+      dataDir:
+        enabled: true
+        existingClaim: mc-raspberry-v1
