@@ -28,17 +28,13 @@ spec:
       autoCurseForge:
         apiKey:
           key: ${SECRET_CURSEFORGE_API_KEY}
-        slug: "raspberry-flavoured"
-        fileId: "6559143"
-      version: "1.19.2"
-
+        pageUrl: "https://www.curseforge.com/minecraft/modpacks/raspberry-flavoured"
       pvp: "default"
       gameMode: survival
       allowNether: true
       overrideServerProperties: true
       viewDistance: 10
       spawnProtection: 4
-      enableCommandBlock: true
       icon: "https://cdn-icons-png.freepik.com/512/12777/12777015.png"
       motd: "raspberry flavoured"
       memory: 5120M
