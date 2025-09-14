@@ -27,16 +27,18 @@ spec:
       type: "FORGE"
       version: "1.19.2"
       pvp: "default"
+      worldSaveName: raspberry
       gameMode: survival
       allowNether: true
       overrideServerProperties: true
-      viewDistance: 10
+      viewDistance: 16
+      seed: "kjhblkjhbkljgh23444444444jnjh"
       spawnProtection: 4
       icon: "https://cdn-icons-png.freepik.com/512/12777/12777015.png"
       motd: "raspberry flavoured"
       memory: 5120M
       serviceType: LoadBalancer
-      ops: "phybros,gimgam5000"
+      ops: "phybros"
       loadBalancerIP: "${SVC_MC_RADDR}"
       externalTrafficPolicy: Local
       rcon:
