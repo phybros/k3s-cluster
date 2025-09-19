@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - seafile
   - sabnzbd
-  - plex
   - sonarr
   - radarr
   - tautulli
