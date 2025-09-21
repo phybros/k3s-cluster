@@ -3,5 +3,4 @@ kind: Kustomization
 resources:
   - mosquitto
   - home-assistant
-  - esphome
   - appdaemon
