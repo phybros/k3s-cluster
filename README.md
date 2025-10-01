@@ -1,3 +1,8 @@
+> [!NOTE]
+> This repo was archived! https://github.com/phybros/home-ops is its successor.
+
+---
+
 <div align="center">
 
 <img src="https://raw.githubusercontent.com/phybros/k3s-cluster/main/docs/logo.png" align="center" width="144px" height="144px"/>
